@@ -11,8 +11,7 @@ const Login = (props) => {
         login: {
             padding: '2rem 2rem',
             float: 'right',
-            width: 'calc(100% - 240px)',
-            marginRight: '10px',
+            width: 'calc(100% - 268px)',
         },
         loginButton: {
             background: 'linear-gradient(90deg, #C1E1C5 0%, #A4D9B1 100%) ',

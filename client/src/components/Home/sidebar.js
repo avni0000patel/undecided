@@ -1,17 +1,44 @@
-import React, { useState } from "react";
 import { useQuery } from '@apollo/client';
-import { Link } from 'react-router-dom';
-import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from "react-pro-sidebar";
+import React, { useState } from "react";
+import { FaBars } from 'react-icons/fa';
 import { FiHome, FiLogOut } from "react-icons/fi";
+import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
-import './sidebar.css';
-import Auth from "../../utils/auth";
-// import ProfileForm from './profileForm';
+import { Link } from 'react-router-dom';
 import ProfileList from './profileList';
-
+import Auth from "../../utils/auth";
 import { QUERY_PROFILES } from '../../utils/queries';
+import "./sidebar.css";
 
 function Sidebar() {
+    const styles = {
+        sidebar: {
+            display: "flex",
+            position: "fixed",
+            zIndex: "-1",
+        },
+        sidebarHeader: {
+            alignItems: "center",
+            display: "flex",
+            padding: "10px 20px",
+        },
+        sidebarCollapseIcon: {
+            color: "FFFFFF",
+        },
+        sidebarLogoText: {
+            color: "#FFFFFF",
+            marginLeft: "10px",
+        },
+        sidebarHome: {
+            color: "#FFFFFF",
+        },
+        sidebarLogin: {
+            color: "#FFFFFF",
+        },
+        sidebarSignup: {
+            color: "#FFFFFF",
+        }
+    }
 
     const [activeIndex, setActiveIndex] = useState(() => {
         const initialIndex =
@@ -28,66 +55,86 @@ function Sidebar() {
     };
 
     const { loading, data } = useQuery(QUERY_PROFILES);
+
     const profiles = data?.profiles || [];
+
+    const [collapsed, setCollapsed] = useState(false);
+
+    if (!collapsed) {
+        styles.sidebar.height = "100vh";
+    } else {
+        styles.sidebar.height = "auto";
+    }
 
     return (
         <>
-            <div className="sidebar" id="header">
-                {/* collapsed props to change menu size using menucollapse state */}
-                <ProSidebar>
-                    <SidebarHeader>
-                        <div className="logotext">
-                            Nest Craft
+            <ProSidebar collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} id="header" style={styles.sidebar}>
+                <SidebarHeader classname="sidebar-header" style={styles.sidebarHeader}>
+                    {collapsed && (
+                        <div className="collapse-icon" onClick={() => setCollapsed(!collapsed)}>
+                            <FaBars style={styles.sidebarCollapseIcon} />
                         </div>
-                    </SidebarHeader>
-                    {Auth.loggedIn() ? (
+                    )}
+                    {!collapsed && (
                         <>
-                            <div className="profile">
-                                {loading ? (
-                                    <div>Loading...</div>
-                                ) : (
-                                    <ProfileList
-                                        profiles={profiles}
-                                    />
-                                )}
-                                <Link
-                                    to="/profile"
-                                >
-                                    Edit Profile
-                                </Link>
-                                {/* <ProfileForm /> */}
+                            <div className="collapse-icon" onClick={() => setCollapsed(!collapsed)}>
+                                <FaBars style={styles.sidebarCollapseIcon} />
                             </div>
-                            <SidebarContent>
-                                <Menu iconShape="square">
-                                    <MenuItem icon={<FiLogOut />}>
-                                        Logout
-                                        <Link id="MenuItemLogout" onClick={logout} />
-                                    </MenuItem>
-                                </Menu>
-                            </SidebarContent>
+                            <div className="logotext" style={styles.sidebarLogoText}>
+                                Nest Craft
+                            </div>
                         </>
-                    ) : (
-                        <>
+                    )}
+                </SidebarHeader>
+                {!collapsed && (
+                    <>
+                        {Auth.loggedIn() ? (
+                            <>
+                                <div className="profile">
+                                    {loading ? (
+                                        <div>Loading...</div>
+                                    ) : (
+                                        <ProfileList
+                                            profiles={profiles}
+                                        />
+                                    )}
+                                    <Link
+                                        to="/profile"
+                                    >
+                                        Edit Profile
+                                    </Link>
+                                    {/* <ProfileForm /> */}
+                                </div>
+                                <SidebarContent>
+                                    <Menu iconShape="square">
+                                        <MenuItem icon={<FiLogOut />}>
+                                            Logout
+                                            <Link id="MenuItemLogout" onClick={logout} />
+                                        </MenuItem>
+                                    </Menu>
+                                </SidebarContent>
+                            </>
+                        ) : (
                             <SidebarContent>
                                 <Menu iconShape="square">
-                                    <MenuItem active={activeIndex === 0} icon={<FiHome />} >
+                                    <MenuItem active={activeIndex === 0} icon={<FiHome />} style={styles.sidebarHome}>
                                         Home
                                         <Link id="MenuItemHome" to="/" onClick={() => setActiveIndex(0)} />
                                     </MenuItem>
-                                    <MenuItem active={activeIndex === 1} icon={<FiHome />} >
+                                    <MenuItem active={activeIndex === 1} icon={<FiHome />} style={styles.sidebarLogin}>
                                         Login
                                         <Link id="MenuItemLogin" to="/login" onClick={() => setActiveIndex(1)} />
                                     </MenuItem>
-                                    <MenuItem active={activeIndex === 2} icon={<FiHome />}>
+                                    <MenuItem active={activeIndex === 2} icon={<FiHome />} style={styles.sidebarSignup}>
                                         Signup
                                         <Link id="MenuItemSignup" to="/signup" onClick={() => setActiveIndex(2)} />
                                     </MenuItem>
                                 </Menu>
                             </SidebarContent>
-                        </>
-                    )}
-                </ProSidebar>
-            </div>
+                        )}
+                    </>
+                )}
+            </ProSidebar>
         </>
     );
 }
