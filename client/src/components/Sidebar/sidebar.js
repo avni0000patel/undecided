@@ -5,7 +5,6 @@ import { FiHome, FiLogOut } from "react-icons/fi";
 import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
 import { Link } from 'react-router-dom';
-import ProfileList from './profileList';
 import Auth from "../../utils/auth";
 import { QUERY_PROFILES } from '../../utils/queries';
 import "./sidebar.css";
@@ -88,28 +87,25 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                     <>
                         {Auth.loggedIn() ? (
                             <>
-                                <div className="profile">
-                                    {loading ? (
-                                        <div>Loading...</div>
-                                    ) : (
-                                        <ProfileList
-                                            profiles={profiles}
-                                        />
-                                    )}
+                                {/* <div className="profile">
                                     <Link
                                         to="/profile"
                                     >
                                         Edit Profile
-                                    </Link>
-                                    {/* <ProfileForm /> */}
-                                </div>
+                                    </Link> */}
+                                {/* <ProfileForm /> */}
+                                {/* </div> */}
                                 <SidebarContent>
                                     <Menu iconShape="square">
                                         <MenuItem active={activeIndex === 0} icon={<FiHome />} style={styles.sidebarHome}>
-                                            Home
-                                            <Link id="MenuItemHome" to="/" onClick={() => setActiveIndex(0)} />
+                                            Profile
+                                            <Link id="MenuItemProfile" to="/profile" onClick={() => setActiveIndex(0)} />
                                         </MenuItem>
-                                        <MenuItem icon={<FiLogOut />}>
+                                        <MenuItem active={activeIndex === 1} icon={<FiHome />} style={styles.sidebarHome}>
+                                            Home
+                                            <Link id="MenuItemHome" to="/" onClick={() => setActiveIndex(1)} />
+                                        </MenuItem>
+                                        <MenuItem active={activeIndex === 2} icon={<FiLogOut />} style={styles.sidebarHome}>
                                             Logout
                                             <Link id="MenuItemLogout" onClick={logout} />
                                         </MenuItem>

@@ -8,14 +8,13 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Background from './components/Home/background';
+import Background from './components/Background/background';
 import Home from './components/Home/home';
-import About from './components/Home/about';
-import Signup from './components/Home/signup';
-import Login from './components/Home/login';
-import ProfileForm from "./components/Home/profileForm";
+import Signup from './components/Signup/signup';
+import Login from './components/Login/login';
+import ProfileForm from "./components/ProfileForm/profileForm";
 
-import Sidebar from './components/Home/sidebar';
+import Sidebar from './components/Sidebar/sidebar';
 import "./App.css";
 
 // Construct our main GraphQL API endpoint
@@ -56,10 +55,6 @@ function App() {
             <Route
               path="/"
               element={<Home collapsed={isSidebarCollapsed} />}
-            />
-            <Route
-              path="/about"
-              element={<About />}
             />
             <Route
               path="/signup"

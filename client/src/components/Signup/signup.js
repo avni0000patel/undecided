@@ -12,7 +12,6 @@ const Signup = ({ collapsed }) => {
             padding: '2rem 2rem',
             float: 'right',
             width: collapsed ? 'calc(100% - 78px)' : 'calc(100% - 268px)',
-
         },
         signupButton: {
             background: 'linear-gradient(90deg, #C1E1C5 0%, #A4D9B1 100%) ',
