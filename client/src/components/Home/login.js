@@ -6,12 +6,12 @@ import Auth from '../../utils/auth';
 import { LOGIN_USER } from '../../utils/mutations';
 import '../../assets/fonts/fonts.css';
 
-const Login = (props) => {
+const Login = ({ collapsed }) => {
     const styles = {
         login: {
             padding: '2rem 2rem',
             float: 'right',
-            width: 'calc(100% - 268px)',
+            width: collapsed ? 'calc(100% - 78px)' : 'calc(100% - 268px)',
         },
         loginButton: {
             background: 'linear-gradient(90deg, #C1E1C5 0%, #A4D9B1 100%) ',
@@ -44,6 +44,7 @@ const Login = (props) => {
         email: '',
         password: ''
     });
+
     const [login, { error, data }] = useMutation(LOGIN_USER);
 
     const handleChange = (event) => {

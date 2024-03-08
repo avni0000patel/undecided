@@ -6,13 +6,13 @@ import Auth from '../../utils/auth';
 import { ADD_USER } from '../../utils/mutations';
 import '../../assets/fonts/fonts.css';
 
-const Signup = () => {
+const Signup = ({ collapsed }) => {
     const styles = {
         signup: {
             padding: '2rem 2rem',
             float: 'right',
-            width: 'calc(100% - 240px)',
-            marginRight: '10px',
+            width: collapsed ? 'calc(100% - 78px)' : 'calc(100% - 268px)',
+
         },
         signupButton: {
             background: 'linear-gradient(90deg, #C1E1C5 0%, #A4D9B1 100%) ',
@@ -46,6 +46,7 @@ const Signup = () => {
         email: '',
         password: '',
     });
+
     const [addUser, { error, data }] = useMutation(ADD_USER);
 
     const handleChange = (event) => {

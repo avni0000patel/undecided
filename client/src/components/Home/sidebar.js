@@ -1,6 +1,6 @@
 import { useQuery } from '@apollo/client';
 import React, { useState } from "react";
-import { FaBars } from 'react-icons/fa';
+import { FaBars, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 import { FiHome, FiLogOut } from "react-icons/fi";
 import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from "react-pro-sidebar";
 import "react-pro-sidebar/dist/css/styles.css";
@@ -10,7 +10,7 @@ import Auth from "../../utils/auth";
 import { QUERY_PROFILES } from '../../utils/queries';
 import "./sidebar.css";
 
-function Sidebar() {
+const Sidebar = ({ collapsed, setCollapsed }) => {
     const styles = {
         sidebar: {
             display: "flex",
@@ -57,8 +57,6 @@ function Sidebar() {
     const { loading, data } = useQuery(QUERY_PROFILES);
 
     const profiles = data?.profiles || [];
-
-    const [collapsed, setCollapsed] = useState(false);
 
     if (!collapsed) {
         styles.sidebar.height = "100vh";
@@ -121,11 +119,11 @@ function Sidebar() {
                                         Home
                                         <Link id="MenuItemHome" to="/" onClick={() => setActiveIndex(0)} />
                                     </MenuItem>
-                                    <MenuItem active={activeIndex === 1} icon={<FiHome />} style={styles.sidebarLogin}>
+                                    <MenuItem active={activeIndex === 1} icon={<FaSignInAlt />} style={styles.sidebarLogin}>
                                         Login
                                         <Link id="MenuItemLogin" to="/login" onClick={() => setActiveIndex(1)} />
                                     </MenuItem>
-                                    <MenuItem active={activeIndex === 2} icon={<FiHome />} style={styles.sidebarSignup}>
+                                    <MenuItem active={activeIndex === 2} icon={<FaUserPlus />} style={styles.sidebarSignup}>
                                         Signup
                                         <Link id="MenuItemSignup" to="/signup" onClick={() => setActiveIndex(2)} />
                                     </MenuItem>

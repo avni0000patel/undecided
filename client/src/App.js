@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   ApolloClient,
   InMemoryCache,
@@ -43,12 +43,14 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+
   return (
     <ApolloProvider client={client}>
       <Router>
         <>
           <Background />
-          <Sidebar />
+          <Sidebar collapsed={isSidebarCollapsed} setCollapsed={setIsSidebarCollapsed} />
           {/* <Nav /> */}
           <Routes>
             <Route
@@ -61,11 +63,11 @@ function App() {
             />
             <Route
               path="/signup"
-              element={<Signup />}
+              element={<Signup collapsed={isSidebarCollapsed} />}
             />
             <Route
               path="/login"
-              element={<Login />}
+              element={<Login collapsed={isSidebarCollapsed} />}
             />
             <Route
               path="/profile"
