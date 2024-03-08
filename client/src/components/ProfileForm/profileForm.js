@@ -6,23 +6,15 @@ import { QUERY_PROFILES, QUERY_ME } from '../../utils/queries';
 
 import './profileForm.css';
 
-const ProfileForm = () => {
+const ProfileForm = ({ collapsed }) => {
     const styles = {
         add__image__button: {
             border: '1px solid black'
         },
-        container: {
-            background: 'linear-gradient(90deg, rgba(93, 12, 255, 1) 0%, rgba(155, 0, 250, 1) 100%)',
-            borderRadius: '2.5rem',
-            boxShadow: '15px 15px 15px rgba(46, 54, 68, 0.4)',
-            display: 'flex',
-            alignItems: 'center',
-            padding: '5rem 3rem',
-            marginTop: '20px',
-            marginBottom: '20px',
+        profileForm: {
             float: 'right',
-            width: 'calc(100% - 240px)',
-            marginRight: '10px',
+            padding: '2rem 2rem',
+            width: collapsed ? 'calc(100% - 78px)' : 'calc(100% - 268px)',
         },
     }
 
@@ -76,7 +68,7 @@ const ProfileForm = () => {
     };
 
     return (
-        <div className="container flex-column justify-center" style={styles.container}>
+        <div className="profileForm" style={styles.profileForm}>
             <form
                 className="avatar-upload"
                 onSubmit={handleFormSubmit}

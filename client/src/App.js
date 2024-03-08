@@ -66,7 +66,7 @@ function App() {
             />
             <Route
               path="/profile"
-              element={<ProfileForm />}
+              element={<ProfileForm collapsed={isSidebarCollapsed} />}
             />
           </Routes>
         </>
