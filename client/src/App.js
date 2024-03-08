@@ -55,7 +55,7 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={<Home />}
+              element={<Home collapsed={isSidebarCollapsed} />}
             />
             <Route
               path="/about"

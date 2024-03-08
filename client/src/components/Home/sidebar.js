@@ -105,6 +105,10 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                                 </div>
                                 <SidebarContent>
                                     <Menu iconShape="square">
+                                        <MenuItem active={activeIndex === 0} icon={<FiHome />} style={styles.sidebarHome}>
+                                            Home
+                                            <Link id="MenuItemHome" to="/" onClick={() => setActiveIndex(0)} />
+                                        </MenuItem>
                                         <MenuItem icon={<FiLogOut />}>
                                             Logout
                                             <Link id="MenuItemLogout" onClick={logout} />
