@@ -35,6 +35,7 @@ const ProfileForm = ({ collapsed }) => {
             width: '300px',
         },
         avatarUpload: {
+            marginRight: '25px',
             position: 'relative',
         },
         avatarEdit: {
@@ -170,20 +171,20 @@ const ProfileForm = ({ collapsed }) => {
 
     return (
         <div className="profileForm" style={styles.profileForm}>
-            <div style={styles.infoContainer}>
+            <div className="infoContainer" style={styles.infoContainer}>
                 <form
-                    className="avatar-upload"
+                    className="avatarUpload"
                     onSubmit={handleFormSubmit}
                     style={styles.avatarUpload}
                 >
-                    <div className="avatar-edit" style={styles.avatarEdit}>
-                        <input id="imageUpload" type="file" className="imageUpload" onChange={handlePhoto} accept=".png, .jpg, .jpeg" style={styles.imageUpload} />
+                    <div className="avatarEdit" style={styles.avatarEdit}>
+                        <input accept=".png, .jpg, .jpeg" className="imageUpload" id="imageUpload" onChange={handlePhoto} style={styles.imageUpload} type="file" />
                         <label className="label" for="imageUpload" style={styles.label}></label>
                     </div>
-                    <div className="avatar-preview" style={styles.avatarPreview}>
-                        <img className="imagePreview" alt="" src={image} style={styles.imagePreview} />
+                    <div className="avatarPreview" style={styles.avatarPreview}>
+                        <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
                     </div>
-                    <button className="uploadImage" type="submit" style={styles.uploadImage}>
+                    <button className="uploadImage" style={styles.uploadImage} type="submit">
                         Upload
                     </button>
                 </form>
@@ -192,26 +193,33 @@ const ProfileForm = ({ collapsed }) => {
                     // onSubmit={handleFormSubmit2}
                     style={styles.profileSubmit}
                 >
-                    <div>
-                        <input type="text" name="name" value={formData.name} onChange={handleChange} placeholder="Name" />
+                    <div className="profileInfo" style={styles.profileInfo}>
+                        <div className="profileLabel" style={styles.profileLabel}>Name:</div>
+                        <input className="profileInput" name="name" onChange={handleChange} placeholder="Name" style={styles.profileInput} type="text" value={formData.name} />
                     </div>
-                    <div>
-                        <input type="email" name="email" value={formData.email} onChange={handleChange} placeholder="Email" />
+                    <div className="profileInfo" style={styles.profileInfo}>
+                        <div className="profileLabel" style={styles.profileLabel}>Email:</div>
+                        <input className="profileInput" name="email" onChange={handleChange} placeholder="Email" style={styles.profileInput} type="email" value={formData.email} />
                     </div>
-                    <div>
-                        <input type="bio" name="bio" value={formData.bio} onChange={handleChange} placeholder="Bio" />
+                    <div className="profileInfo" style={styles.profileInfo}>
+                        <div className="profileLabel" style={styles.profileLabel}>Bio:</div>
+                        <input className="profileInput" name="bio" onChange={handleChange} placeholder="Bio" style={styles.profileInput} type="bio" value={formData.bio} />
                     </div>
-                    <div>
-                        <input type="text" name="location" value={formData.location} onChange={handleChange} placeholder="Location" />
+                    <div className="profileInfo" style={styles.profileInfo}>
+                        <div className="profileLabel" style={styles.profileLabel}>Location:</div>
+                        <input className="profileInput" name="location" onChange={handleChange} placeholder="Location" style={styles.profileInput} type="text" value={formData.location} />
                     </div>
-                    <div>
-                        <input type="text" name="twitter" value={formData.socialMedia.twitter} onChange={handleChange} placeholder="Twitter" />
+                    <div className="profileInfo" style={styles.profileInfo}>
+                        <div className="profileLabel" style={styles.profileLabel}>Twitter:</div>
+                        <input className="profileInput" name="twitter" onChange={handleChange} placeholder="Twitter" style={styles.profileInput} type="text" value={formData.socialMedia.twitter} />
                     </div>
-                    <div>
-                        <input type="text" name="linkedin" value={formData.socialMedia.linkedin} onChange={handleChange} placeholder="LinkedIn" />
+                    <div className="profileInfo" style={styles.profileInfo}>
+                        <div className="profileLabel" style={styles.profileLabel}>LinkedIn:</div>
+                        <input className="profileInput" name="linkedin" onChange={handleChange} placeholder="LinkedIn" style={styles.profileInput} type="text" value={formData.socialMedia.linkedin} />
                     </div>
-                    <div>
-                        <input type="text" name="instagram" value={formData.socialMedia.instagram} onChange={handleChange} placeholder="Instagram" />
+                    <div className="profileInfo" style={styles.profileInfo}>
+                        <div className="profileLabel" style={styles.profileLabel}>Instagram:</div>
+                        <input className="profileInput" name="instagram" onChange={handleChange} placeholder="Instagram" style={styles.profileInput} type="text" value={formData.socialMedia.instagram} />
                     </div>
                 </form >
             </div>
