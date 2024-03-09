@@ -79,7 +79,6 @@ const ProfileForm = ({ collapsed }) => {
         },
         uploadImage: {
             border: '1px solid black',
-            display: 'block',
             margin: '0 auto;',
             marginTop: '10px',
             textAlign: 'center',
