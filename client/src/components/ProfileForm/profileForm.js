@@ -27,13 +27,6 @@ const ProfileForm = ({ collapsed }) => {
             flexWrap: 'wrap',
             justifyContent: 'space-around',
         },
-        infoBox: {
-            border: '1px solid #ccc',
-            borderRadius: '8px',
-            marginBottom: '1rem',
-            padding: '1rem',
-            width: '300px',
-        },
         avatarUpload: {
             marginRight: '25px',
             position: 'relative',
@@ -42,6 +35,15 @@ const ProfileForm = ({ collapsed }) => {
             position: 'absolute',
             right: '12px',
             zIndex: 1,
+        },
+        avatarPreview: {
+            border: '6px solid #F8F8F8',
+            borderRadius: '100%',
+            boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.1)',
+            height: '192px',
+            overflow: 'hidden',
+            position: 'relative',
+            width: '192px',
         },
         imageUpload: {
             display: 'none',
@@ -59,15 +61,6 @@ const ProfileForm = ({ collapsed }) => {
             transition: 'all .2s ease-in-out',
             width: '34px',
         },
-        avatarPreview: {
-            border: '6px solid #F8F8F8',
-            borderRadius: '100%',
-            boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.1)',
-            height: '192px',
-            overflow: 'hidden',
-            position: 'relative',
-            width: '192px',
-        },
         imagePreview: {
             backgroundImage: `url("https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png")`,
             backgroundPosition: 'center',
@@ -83,6 +76,18 @@ const ProfileForm = ({ collapsed }) => {
             margin: '0 auto;',
             marginTop: '10px',
             textAlign: 'center',
+        },
+        profileInfo: {
+            alignItems: 'center',
+            display: 'flex',
+            marginBottom: '10px',
+        },
+        profileLabel: {
+            marginRight: '10px',
+            minWidth: '100px',
+        },
+        profileInput: {
+            flex: 1,
         }
     }
 
