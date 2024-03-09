@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-
+import React, { useState } from 'react';
 import { ADD_PROFILE } from '../../utils/mutations';
 import { QUERY_PROFILES, QUERY_ME } from '../../utils/queries';
-
 import './profileForm.css';
 
 const ProfileForm = ({ collapsed }) => {
