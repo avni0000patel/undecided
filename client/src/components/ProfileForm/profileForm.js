@@ -1,5 +1,5 @@
 import { useMutation } from '@apollo/client';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ADD_PROFILE } from '../../utils/mutations';
 import { QUERY_PROFILES, QUERY_ME } from '../../utils/queries';
 import './profileForm.css';
@@ -25,7 +25,7 @@ const ProfileForm = ({ collapsed }) => {
             flexWrap: 'wrap',
             justifyContent: 'space-around',
         },
-        avatarUpload: {
+        avatarSubmit: {
             marginRight: '25px',
             position: 'relative',
         },
@@ -69,9 +69,9 @@ const ProfileForm = ({ collapsed }) => {
             objectFit: 'cover',
             width: '100%',
         },
-        uploadImage: {
+        profileSubmit: {
             border: '1px solid black',
-            margin: '0 auto;',
+            margin: '0 auto',
             marginTop: '10px',
             textAlign: 'center',
         },
@@ -89,20 +89,17 @@ const ProfileForm = ({ collapsed }) => {
         }
     }
 
-    const [formData, setFormData] = useState({
-        image: '',
-        name: '',
-        email: '',
-        bio: '',
-        location: '',
-        socialMedia: {
-            twitter: '',
-            linkedin: '',
-            instagram: '',
-        },
-    });
-
-    const [image, setImage] = useState('');
+    const [image, setImage] = useState("");
+    const [name, setName] = useState("");
+    useEffect(() => {
+        console.log("name:", name)
+    }, [name])
+    const [email, setEmail] = useState("");
+    const [bio, setBio] = useState("");
+    const [location, setLocation] = useState("");
+    const [twitter, setTwitter] = useState("");
+    const [linkedin, setLinkedin] = useState("");
+    const [instagram, setInstagram] = useState("");
 
     const [addProfile] = useMutation(ADD_PROFILE, {
         update(cache, { data: { addProfile } }) {
@@ -138,22 +135,24 @@ const ProfileForm = ({ collapsed }) => {
             const { data } = await addProfile({
                 variables: {
                     image,
-                    ...formData,
+                    name,
+                    email,
+                    bio,
+                    location,
+                    twitter,
+                    linkedin,
+                    instagram,
                 },
             });
-            setImage('');
-            setFormData({
-                image: '',
-                name: '',
-                email: '',
-                bio: '',
-                location: '',
-                socialMedia: {
-                    twitter: '',
-                    linkedin: '',
-                    instagram: '',
-                },
-            });
+            // setImage("");
+            // setName("");
+            // setEmail("");
+            // setBio("");
+            // setLocation("");
+            // setTwitter("");
+            // setLinkedin("");
+            // setInstagram("");
+
         } catch (error) {
             throw error;
         }
@@ -164,65 +163,92 @@ const ProfileForm = ({ collapsed }) => {
         setImage(URL.createObjectURL(event.target.files[0]));
     };
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    };
+    const handleNameChange = (event) => {
+        const { value } = event.target;
+        setName(value);
+    }
+
+    const handleEmailChange = (event) => {
+        const { value } = event.target;
+        setEmail(value);
+    }
+
+    const handleBioChange = (event) => {
+        const { value } = event.target;
+        setBio(value);
+    }
+
+    const handleLocationChange = (event) => {
+        const { value } = event.target;
+        setLocation(value);
+    }
+
+    const handleTwitterChange = (event) => {
+        const { value } = event.target;
+        setTwitter(value);
+    }
+
+    const handleLinkedinChange = (event) => {
+        const { value } = event.target;
+        setLinkedin(value);
+    }
+
+    const handleInstagramChange = (event) => {
+        const { value } = event.target;
+        setInstagram(value);
+    }
 
     return (
         <div className="profileForm" style={styles.profileForm}>
             <div className="infoContainer" style={styles.infoContainer}>
                 <form
-                    className="avatarUpload"
+                    className="profileSubmit"
                     onSubmit={handleFormSubmit}
-                    style={styles.avatarUpload}
-                >
-                    <div className="avatarEdit" style={styles.avatarEdit}>
-                        <input accept=".png, .jpg, .jpeg" className="imageUpload" id="imageUpload" onChange={handlePhoto} style={styles.imageUpload} type="file" />
-                        <label className="label" for="imageUpload" style={styles.label}></label>
-                    </div>
-                    <div className="avatarPreview" style={styles.avatarPreview}>
-                        <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
-                    </div>
-                    <button className="uploadImage" style={styles.uploadImage} type="submit">
-                        Upload
-                    </button>
-                </form>
-                <form
-                    className="profile-submit"
-                    // onSubmit={handleFormSubmit2}
                     style={styles.profileSubmit}
                 >
-                    <div className="profileInfo" style={styles.profileInfo}>
-                        <div className="profileLabel" style={styles.profileLabel}>Name:</div>
-                        <input className="profileInput" name="name" onChange={handleChange} placeholder="Name" style={styles.profileInput} type="text" value={formData.name} />
+                    <div className="avatarSubmit" style={styles.avatarSubmit}>
+                        <div className="avatarEdit" style={styles.avatarEdit}>
+                            <input accept=".png, .jpg, .jpeg" className="imageUpload" id="imageUpload" onChange={handlePhoto} style={styles.imageUpload} type="file" />
+                            <label className="label" htmlFor="imageUpload" style={styles.label}></label>
+                        </div>
+                        <div className="avatarPreview" style={styles.avatarPreview}>
+                            <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
+                        </div>
                     </div>
-                    <div className="profileInfo" style={styles.profileInfo}>
-                        <div className="profileLabel" style={styles.profileLabel}>Email:</div>
-                        <input className="profileInput" name="email" onChange={handleChange} placeholder="Email" style={styles.profileInput} type="email" value={formData.email} />
+                    <div className="userSubmit" style={styles.userSubmit}>
+                        <div className="profileInfo" style={styles.profileInfo}>
+                            <div className="profileLabel" style={styles.profileLabel}>Name:</div>
+                            <input className="profileInput" name="name" onChange={handleNameChange} style={styles.profileInput} type="text" value={name} />
+                        </div>
+                        <div className="profileInfo" style={styles.profileInfo}>
+                            <div className="profileLabel" style={styles.profileLabel}>Email:</div>
+                            <input className="profileInput" name="email" onChange={handleEmailChange} style={styles.profileInput} type="text" value={email} />
+                        </div>
+                        <div className="profileInfo" style={styles.profileInfo}>
+                            <div className="profileLabel" style={styles.profileLabel}>Bio:</div>
+                            <input className="profileInput" name="bio" onChange={handleBioChange} style={styles.profileInput} type="text" value={bio} />
+                        </div>
+                        <div className="profileInfo" style={styles.profileInfo}>
+                            <div className="profileLabel" style={styles.profileLabel}>Location:</div>
+                            <input className="profileInput" name="location" onChange={handleLocationChange} style={styles.profileInput} type="text" value={location} />
+                        </div>
+                        <div className="profileInfo" style={styles.profileInfo}>
+                            <div className="profileLabel" style={styles.profileLabel}>Twitter:</div>
+                            <input className="profileInput" name="twitter" onChange={handleTwitterChange} style={styles.profileInput} type="text" value={twitter} />
+                        </div>
+                        <div className="profileInfo" style={styles.profileInfo}>
+                            <div className="profileLabel" style={styles.profileLabel}>LinkedIn:</div>
+                            <input className="profileInput" name="linkedin" onChange={handleLinkedinChange} style={styles.profileInput} type="text" value={linkedin} />
+                        </div>
+                        <div className="profileInfo" style={styles.profileInfo}>
+                            <div className="profileLabel" style={styles.profileLabel}>Instagram:</div>
+                            <input className="profileInput" name="instagram" onChange={handleInstagramChange} style={styles.profileInput} type="text" value={instagram} />
+                        </div>
                     </div>
-                    <div className="profileInfo" style={styles.profileInfo}>
-                        <div className="profileLabel" style={styles.profileLabel}>Bio:</div>
-                        <input className="profileInput" name="bio" onChange={handleChange} placeholder="Bio" style={styles.profileInput} type="bio" value={formData.bio} />
-                    </div>
-                    <div className="profileInfo" style={styles.profileInfo}>
-                        <div className="profileLabel" style={styles.profileLabel}>Location:</div>
-                        <input className="profileInput" name="location" onChange={handleChange} placeholder="Location" style={styles.profileInput} type="text" value={formData.location} />
-                    </div>
-                    <div className="profileInfo" style={styles.profileInfo}>
-                        <div className="profileLabel" style={styles.profileLabel}>Twitter:</div>
-                        <input className="profileInput" name="twitter" onChange={handleChange} placeholder="Twitter" style={styles.profileInput} type="text" value={formData.socialMedia.twitter} />
-                    </div>
-                    <div className="profileInfo" style={styles.profileInfo}>
-                        <div className="profileLabel" style={styles.profileLabel}>LinkedIn:</div>
-                        <input className="profileInput" name="linkedin" onChange={handleChange} placeholder="LinkedIn" style={styles.profileInput} type="text" value={formData.socialMedia.linkedin} />
-                    </div>
-                    <div className="profileInfo" style={styles.profileInfo}>
-                        <div className="profileLabel" style={styles.profileLabel}>Instagram:</div>
-                        <input className="profileInput" name="instagram" onChange={handleChange} placeholder="Instagram" style={styles.profileInput} type="text" value={formData.socialMedia.instagram} />
+                    <div className="profileSubmitContainer" style={styles.profileSubmitContainer}>
+                        <button className="profileSubmit" style={styles.profileSubmit} type="submit">
+                            Submit
+                        </button>
                     </div>
                 </form >
             </div>

@@ -1,4 +1,3 @@
-import { useQuery } from '@apollo/client';
 import React, { useState } from "react";
 import { FaBars, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 import { FiHome, FiLogOut } from "react-icons/fi";
@@ -6,7 +5,6 @@ import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from "react
 import "react-pro-sidebar/dist/css/styles.css";
 import { Link } from 'react-router-dom';
 import Auth from "../../utils/auth";
-import { QUERY_PROFILES } from '../../utils/queries';
 import "./sidebar.css";
 
 const Sidebar = ({ collapsed, setCollapsed }) => {
@@ -53,10 +51,6 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
         Auth.logout();
     };
 
-    const { loading, data } = useQuery(QUERY_PROFILES);
-
-    const profiles = data?.profiles || [];
-
     if (!collapsed) {
         styles.sidebar.height = "100vh";
     } else {
@@ -66,7 +60,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
     return (
         <>
             <ProSidebar collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} id="header" style={styles.sidebar}>
-                <SidebarHeader classname="sidebar-header" style={styles.sidebarHeader}>
+                <SidebarHeader className="sidebar-header" style={styles.sidebarHeader}>
                     {collapsed && (
                         <div className="collapse-icon" onClick={() => setCollapsed(!collapsed)}>
                             <FaBars style={styles.sidebarCollapseIcon} />

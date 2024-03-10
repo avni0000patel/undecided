@@ -11,7 +11,14 @@ const typeDefs = gql`
 
   type Profile {
     _id: ID
-    image: String!
+    image: String
+    name: String
+    email: String
+    bio: String
+    location: String
+    twitter: String
+    linkedin: String
+    instagram: String
   }
 
   type Auth {
@@ -30,7 +37,7 @@ const typeDefs = gql`
   type Mutation {
     addUser(username: String!, email: String!, password: String!): Auth
     login(email: String!, password: String!): Auth
-    addProfile(image: String!): Profile
+    addProfile(image: String, name: String, email: String, bio: String, location: String, twitter: String, linkedin: String, instagram: String): Profile
     removeProfile(profileId: ID!): Profile
   }
 `;

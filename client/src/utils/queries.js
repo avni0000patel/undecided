@@ -9,6 +9,13 @@ export const QUERY_USER = gql`
       profiles {
         _id
         image
+        name
+        email
+        bio
+        location
+        twitter
+        linkedin
+        instagram
       }
     }
   }
@@ -19,6 +26,13 @@ export const QUERY_PROFILES = gql`
     profiles {
       _id
       image
+      name
+      email
+      bio
+      location
+      twitter
+      linkedin
+      instagram
     }
   }
 `;
@@ -28,6 +42,13 @@ export const QUERY_SINGLE_PROFILE = gql`
     profile(profileId: $profileId) {
       _id
       image
+      name
+      email
+      bio
+      location
+      twitter
+      linkedin
+      instagram
     }
   }
 `;
@@ -41,6 +62,13 @@ export const QUERY_ME = gql`
       profiles {
         _id
         image
+        name
+        email
+        bio
+        location
+        twitter
+        linkedin
+        instagram
       }
     }
   }

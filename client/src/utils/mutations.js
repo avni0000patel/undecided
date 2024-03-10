@@ -25,8 +25,8 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_PROFILE = gql`
-  mutation addProfile($image: String!) {
-    addProfile(image: $image) {
+  mutation addProfile($image: String, $name: String, $email: String, $bio: String, $location: String, $twitter: String, $linkedin: String, $instagram: String) {
+    addProfile(image: $image, name: $name, email: $email, bio: $bio, location: $location, twitter: $twitter, linkedin: $linkedin, instagram: $instagram) {
       _id
       image
     }
