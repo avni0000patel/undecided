@@ -48,7 +48,7 @@ const resolvers = {
 
             return { token, user };
         },
-        addProfile: async (parent, { image, name }, context) => {
+        addProfile: async (parent, { image, name, email, bio, location, twitter, linkedin, instagram }, context) => {
             if (context.user) {
                 const profile = await Profile.create({
                     image,
