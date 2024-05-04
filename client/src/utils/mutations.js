@@ -29,6 +29,13 @@ export const ADD_PROFILE = gql`
     addProfile(image: $image, name: $name, email: $email, bio: $bio, location: $location, twitter: $twitter, linkedin: $linkedin, instagram: $instagram) {
       _id
       image
+      name
+      email
+      bio
+      location
+      twitter
+      linkedin
+      instagram
     }
   }
 `;
