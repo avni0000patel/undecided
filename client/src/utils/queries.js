@@ -22,7 +22,7 @@ export const QUERY_USER = gql`
 `;
 
 export const QUERY_PROFILES = gql`
-  query getProfiles {
+  query profiles {
     profiles {
       _id
       image
@@ -38,7 +38,7 @@ export const QUERY_PROFILES = gql`
 `;
 
 export const QUERY_SINGLE_PROFILE = gql`
-  query getSingleProfile($profileId: ID!) {
+  query profile($profileId: ID!) {
     profile(profileId: $profileId) {
       _id
       image

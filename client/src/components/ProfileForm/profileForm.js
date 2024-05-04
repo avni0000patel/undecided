@@ -1,4 +1,4 @@
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import React, { useState, useEffect } from 'react';
 import { ADD_PROFILE } from '../../utils/mutations';
 import { QUERY_PROFILES, QUERY_ME } from '../../utils/queries';
@@ -89,6 +89,14 @@ const ProfileForm = ({ collapsed }) => {
         }
     }
 
+    const dataProfiles = useQuery(QUERY_PROFILES);
+    const data = useQuery(QUERY_ME);
+
+    useEffect(() => {
+        console.log(dataProfiles)
+        console.log(data);
+    }, [dataProfiles, data]);
+
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
@@ -123,6 +131,7 @@ const ProfileForm = ({ collapsed }) => {
                 throw error;
             }
         },
+        refetchQueries: [{ query: QUERY_ME }],
     });
 
     const handleFormSubmit = async (event) => {
@@ -141,14 +150,7 @@ const ProfileForm = ({ collapsed }) => {
                     instagram,
                 },
             });
-            // setImage("");
-            // setName("");
-            // setEmail("");
-            // setBio("");
-            // setLocation("");
-            // setTwitter("");
-            // setLinkedin("");
-            // setInstagram("");
+            console.log(data);
 
         } catch (error) {
             throw error;
