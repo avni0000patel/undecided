@@ -91,9 +91,6 @@ const ProfileForm = ({ collapsed }) => {
 
     const [image, setImage] = useState("");
     const [name, setName] = useState("");
-    useEffect(() => {
-        console.log("name:", name)
-    }, [name])
     const [email, setEmail] = useState("");
     const [bio, setBio] = useState("");
     const [location, setLocation] = useState("");
