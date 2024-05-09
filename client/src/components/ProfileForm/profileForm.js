@@ -131,7 +131,6 @@ const ProfileForm = ({ collapsed }) => {
                 throw error;
             }
         },
-        refetchQueries: [{ query: QUERY_ME }],
     });
 
     const handleFormSubmit = async (event) => {
@@ -150,7 +149,6 @@ const ProfileForm = ({ collapsed }) => {
                     instagram,
                 },
             });
-            console.log(data);
 
         } catch (error) {
             throw error;
@@ -217,31 +215,31 @@ const ProfileForm = ({ collapsed }) => {
                     <div className="userSubmit" style={styles.userSubmit}>
                         <div className="profileInfo" style={styles.profileInfo}>
                             <div className="profileLabel" style={styles.profileLabel}>Name:</div>
-                            <input className="profileInput" name="name" onChange={handleNameChange} style={styles.profileInput} type="text" value={name} />
+                            <input className="profileInput" name="name" onChange={handleNameChange} style={styles.profileInput} type="text" value={dataProfiles.data ? dataProfiles.data.profiles[0].name : name} />
                         </div>
                         <div className="profileInfo" style={styles.profileInfo}>
                             <div className="profileLabel" style={styles.profileLabel}>Email:</div>
-                            <input className="profileInput" name="email" onChange={handleEmailChange} style={styles.profileInput} type="text" value={email} />
+                            <input className="profileInput" name="email" onChange={handleEmailChange} style={styles.profileInput} type="text" value={dataProfiles.data ? dataProfiles.data.profiles[0].email : email} />
                         </div>
                         <div className="profileInfo" style={styles.profileInfo}>
                             <div className="profileLabel" style={styles.profileLabel}>Bio:</div>
-                            <input className="profileInput" name="bio" onChange={handleBioChange} style={styles.profileInput} type="text" value={bio} />
+                            <input className="profileInput" name="bio" onChange={handleBioChange} style={styles.profileInput} type="text" value={dataProfiles.data ? dataProfiles.data.profiles[0].bio : bio} />
                         </div>
                         <div className="profileInfo" style={styles.profileInfo}>
                             <div className="profileLabel" style={styles.profileLabel}>Location:</div>
-                            <input className="profileInput" name="location" onChange={handleLocationChange} style={styles.profileInput} type="text" value={location} />
+                            <input className="profileInput" name="location" onChange={handleLocationChange} style={styles.profileInput} type="text" value={dataProfiles.data ? dataProfiles.data.profiles[0].location : location} />
                         </div>
                         <div className="profileInfo" style={styles.profileInfo}>
                             <div className="profileLabel" style={styles.profileLabel}>Twitter:</div>
-                            <input className="profileInput" name="twitter" onChange={handleTwitterChange} style={styles.profileInput} type="text" value={twitter} />
+                            <input className="profileInput" name="twitter" onChange={handleTwitterChange} style={styles.profileInput} type="text" value={dataProfiles.data ? dataProfiles.data.profiles[0].twitter : twitter} />
                         </div>
                         <div className="profileInfo" style={styles.profileInfo}>
                             <div className="profileLabel" style={styles.profileLabel}>LinkedIn:</div>
-                            <input className="profileInput" name="linkedin" onChange={handleLinkedinChange} style={styles.profileInput} type="text" value={linkedin} />
+                            <input className="profileInput" name="linkedin" onChange={handleLinkedinChange} style={styles.profileInput} type="text" value={dataProfiles.data ? dataProfiles.data.profiles[0].linkedin : linkedin} />
                         </div>
                         <div className="profileInfo" style={styles.profileInfo}>
                             <div className="profileLabel" style={styles.profileLabel}>Instagram:</div>
-                            <input className="profileInput" name="instagram" onChange={handleInstagramChange} style={styles.profileInput} type="text" value={instagram} />
+                            <input className="profileInput" name="instagram" onChange={handleInstagramChange} style={styles.profileInput} type="text" value={dataProfiles.data ? dataProfiles.data.profiles[0].instagram : instagram} />
                         </div>
                     </div>
                     <div className="profileSubmitContainer" style={styles.profileSubmitContainer}>
