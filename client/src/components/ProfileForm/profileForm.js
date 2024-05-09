@@ -17,7 +17,7 @@ const ProfileForm = ({ collapsed }) => {
             fontWeight: 400,
             justifyContent: 'flex-start',
             padding: '2rem 2rem',
-            textAlign: 'center',
+            // textAlign: 'center',
             width: collapsed ? 'calc(100% - 78px)' : 'calc(100% - 268px)',
         },
         infoContainer: {
@@ -81,8 +81,40 @@ const ProfileForm = ({ collapsed }) => {
         bioSubmit: {
             backgroundColor: '#A4D9B1',
             border: '1px solid white',
+            margin: '0px 0px 25px 0px',
             padding: '25px',
             position: 'relative'
+        },
+        bioInfo: {
+            marginBottom: '10px',
+        },
+        bioLabel: {
+            // marginRight: '10px',
+            // minWidth: '100px',
+        },
+        bioInput: {
+            border: '1px solid white',
+            flex: 1,
+            padding: '5px 15px 5px 15px'
+        },
+        nameSubmit: {
+            backgroundColor: '#A4D9B1',
+            border: '1px solid white',
+            margin: '0px 0px 25px 0px',
+            padding: '25px',
+            position: 'relative'
+        },
+        nameInfo: {
+            marginBottom: '10px',
+        },
+        nameLabel: {
+            // marginRight: '10px',
+            // minWidth: '100px',
+        },
+        nameInput: {
+            border: '1px solid white',
+            flex: 1,
+            padding: '5px 15px 5px 15px'
         },
         rightContainer: {
             float: 'right',
@@ -120,7 +152,7 @@ const ProfileForm = ({ collapsed }) => {
         },
         profileLabel: {
             marginRight: '10px',
-            minWidth: '100px',
+            minWidth: '70px',
         },
         profileInput: {
             border: '1px solid white',
@@ -252,11 +284,18 @@ const ProfileForm = ({ collapsed }) => {
                             <div className="avatarPreview" style={styles.avatarPreview}>
                                 <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
                             </div>
+                            <input className="nameInput" name="name" onChange={handleNameChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].name : name} />
                         </div>
+                        {/* <div className="nameSubmit" style={styles.nameSubmit}>
+                            <div className="nameInfo" style={styles.nameInfo}>
+                                <div className="nameLabel" style={styles.nameLabel}>My name is:</div>
+                                <input className="nameInput" name="name" onChange={handleNameChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].name : name} />
+                            </div>
+                        </div> */}
                         <div className="bioSubmit" style={styles.bioSubmit}>
-                            <div className="profileInfo" style={styles.profileInfo}>
-                                <div className="profileLabel" style={styles.profileLabel}>Bio:</div>
-                                <input className="profileInput" name="bio" onChange={handleBioChange} style={styles.profileInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].bio : bio} />
+                            <div className="bioInfo" style={styles.bioInfo}>
+                                <div className="bioLabel" style={styles.bioLabel}>Bio:</div>
+                                <input className="bioInput" name="bio" onChange={handleBioChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].bio : bio} />
                             </div>
                         </div>
                     </div>
@@ -267,15 +306,15 @@ const ProfileForm = ({ collapsed }) => {
                                 <input className="profileInput" name="name" onChange={handleNameChange} style={styles.profileInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].name : name} />
                             </div>
                             <div className="profileInfo" style={styles.profileInfo}>
-                                <div className="profileLabel" style={styles.profileLabel}>Email:</div>
-                                <input className="profileInput" name="email" onChange={handleEmailChange} style={styles.profileInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].email : email} />
-                            </div>
-                            <div className="profileInfo" style={styles.profileInfo}>
                                 <div className="profileLabel" style={styles.profileLabel}>Location:</div>
                                 <input className="profileInput" name="location" onChange={handleLocationChange} style={styles.profileInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].location : location} />
                             </div>
                         </div>
                         <div className="socialSubmit" style={styles.socialSubmit}>
+                            <div className="profileInfo" style={styles.profileInfo}>
+                                <div className="profileLabel" style={styles.profileLabel}>Email:</div>
+                                <input className="profileInput" name="email" onChange={handleEmailChange} style={styles.profileInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].email : email} />
+                            </div>
                             <div className="profileInfo" style={styles.profileInfo}>
                                 <div className="profileLabel" style={styles.profileLabel}>Twitter:</div>
                                 <input className="profileInput" name="twitter" onChange={handleTwitterChange} style={styles.profileInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].twitter : twitter} />
