@@ -4,30 +4,30 @@ const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
-        users: async () => {
-            return User.find();
-        },
-        user: async (parent, { username }) => {
-            return User.findOne({ username });
-        },
-        profiles: async (parent, { username }) => {
-            const params = username ? { username } : {};
-            return Profile.find(params);
-        },
-        profile: async (parent, { profileId }) => {
-            return Profile.findOne({ _id: profileId });
-        },
         me: async (parent, args, context) => {
             if (context.user) {
                 return User.findOne({ _id: context.user._id });
             }
             throw new AuthenticationError('You need to be logged in!');
         },
+        profile: async (parent, { profileId }) => {
+            return Profile.findOne({ _id: profileId });
+        },
+        profiles: async (parent, { username }) => {
+            const params = username ? { username } : {};
+            return Profile.find(params);
+        },
+        user: async (parent, { username }) => {
+            return User.findOne({ username });
+        },
+        users: async () => {
+            return User.find();
+        },
     },
 
     Mutation: {
-        addUser: async (parent, { username, email, password }) => {
-            const user = await User.create({ username, email, password });
+        addUser: async (parent, { email, first_name, last_name, password, username }) => {
+            const user = await User.create({ email, first_name, last_name, password, username });
             const token = signToken(user);
             return { token, user };
         },
@@ -48,17 +48,17 @@ const resolvers = {
 
             return { token, user };
         },
-        addProfile: async (parent, { image, name, email, bio, location, twitter, linkedin, instagram }, context) => {
+        addProfile: async (parent, { bio, email, image, instagram, linkedin, location, name, twitter }, context) => {
             if (context.user) {
                 const profile = await Profile.create({
-                    image,
-                    name,
-                    email,
                     bio,
-                    location,
-                    twitter,
+                    email,
+                    image,
+                    instagram,
                     linkedin,
-                    instagram
+                    location,
+                    name,
+                    twitter,
                 });
 
                 await User.findOneAndUpdate(

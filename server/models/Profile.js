@@ -1,30 +1,30 @@
 const { Schema, model } = require('mongoose');
 
 const profileSchema = new Schema({
-    image: {
-        type: String
-    },
-    name: {
+    bio: {
         type: String
     },
     email: {
         type: String
     },
-    bio: {
+    image: {
         type: String
     },
-    location: {
-        type: String
-    },
-    twitter: {
+    instagram: {
         type: String
     },
     linkedin: {
         type: String
     },
-    instagram: {
+    location: {
         type: String
-    }
+    },
+    name: {
+        type: String
+    },
+    twitter: {
+        type: String
+    },
 });
 
 const Profile = model('Profile', profileSchema);

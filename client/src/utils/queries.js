@@ -4,19 +4,21 @@ export const QUERY_USER = gql`
   query user($username: String!) {
     user(username: $username) {
       _id
-      username
       email
+      first_name
+      last_name
       profiles {
         _id
-        image
-        name
-        email
         bio
-        location
-        twitter
-        linkedin
+        email
+        image
         instagram
+        linkedin
+        location
+        name
+        twitter
       }
+      username
     }
   }
 `;
@@ -25,14 +27,14 @@ export const QUERY_PROFILES = gql`
   query profiles {
     profiles {
       _id
-      image
-      name
-      email
-      bio
-      location
-      twitter
-      linkedin
-      instagram
+        bio
+        email
+        image
+        instagram
+        linkedin
+        location
+        name
+        twitter
     }
   }
 `;
@@ -41,14 +43,14 @@ export const QUERY_SINGLE_PROFILE = gql`
   query profile($profileId: ID!) {
     profile(profileId: $profileId) {
       _id
-      image
-      name
-      email
       bio
-      location
-      twitter
-      linkedin
+      email
+      image
       instagram
+      linkedin
+      location
+      name
+      twitter
     }
   }
 `;
@@ -57,19 +59,21 @@ export const QUERY_ME = gql`
   query me {
     me {
       _id
-      username
       email
+      first_name
+      last_name
       profiles {
         _id
-        image
-        name
-        email
         bio
-        location
-        twitter
-        linkedin
+        email
+        image
         instagram
+        linkedin
+        location
+        name
+        twitter
       }
+      username
     }
   }
 `;

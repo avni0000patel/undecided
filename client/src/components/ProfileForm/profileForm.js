@@ -8,12 +8,12 @@ const ProfileForm = ({ collapsed }) => {
     const styles = {
         profileForm: {
             alignItems: 'center',
-            color: "#FFFFFF",
+            color: '#FFFFFF',
             display: 'flex',
             flexDirection: 'column',
             float: 'right',
-            fontFamily: "Indie Flower",
-            fontStyle: "normal",
+            fontFamily: 'Indie Flower',
+            fontStyle: 'normal',
             fontWeight: 400,
             justifyContent: 'flex-start',
             padding: '2rem 2rem',
@@ -79,6 +79,12 @@ const ProfileForm = ({ collapsed }) => {
             objectFit: 'cover',
             width: '100%',
         },
+        name: {
+            display: 'flex',
+            fontSize: '36px',
+            fontWeight: 700,
+            justifyContent: 'center'
+        },
         bioSubmit: {
             backgroundColor: '#A4D9B1',
             border: '1px solid white',
@@ -91,30 +97,10 @@ const ProfileForm = ({ collapsed }) => {
             marginBottom: '10px',
         },
         bioLabel: {
-            // marginRight: '10px',
-            // minWidth: '100px',
+            fontSize: '25px',
+            fontWeight: 600,
         },
         bioInput: {
-            border: '1px solid white',
-            flex: 1,
-            padding: '5px 15px 5px 15px'
-        },
-        nameSubmit: {
-            backgroundColor: '#A4D9B1',
-            border: '1px solid white',
-            borderRadius: '15px',
-            margin: '0px 0px 25px 0px',
-            padding: '25px',
-            position: 'relative'
-        },
-        nameInfo: {
-            marginBottom: '10px',
-        },
-        nameLabel: {
-            // marginRight: '10px',
-            // minWidth: '100px',
-        },
-        nameInput: {
             border: '1px solid white',
             flex: 1,
             padding: '5px 15px 5px 15px'
@@ -129,6 +115,8 @@ const ProfileForm = ({ collapsed }) => {
             backgroundColor: '#A4D9B1',
             border: '1px solid white',
             borderRadius: '15px',
+            fontSize: '25px',
+            fontWeight: 600,
             margin: '0px 0px 25px 0px',
             padding: '25px',
         },
@@ -136,6 +124,8 @@ const ProfileForm = ({ collapsed }) => {
             backgroundColor: '#A4D9B1',
             border: '1px solid white',
             borderRadius: '15px',
+            fontSize: '25px',
+            fontWeight: 600,
             padding: '25px',
             position: 'relative',
         },
@@ -157,7 +147,7 @@ const ProfileForm = ({ collapsed }) => {
         },
         profileLabel: {
             marginRight: '10px',
-            minWidth: '70px',
+            minWidth: '100 px',
         },
         profileInput: {
             border: '1px solid white',
@@ -175,7 +165,6 @@ const ProfileForm = ({ collapsed }) => {
     }, [dataProfiles, data]);
 
     const [image, setImage] = useState("");
-    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [bio, setBio] = useState("");
     const [location, setLocation] = useState("");
@@ -217,7 +206,6 @@ const ProfileForm = ({ collapsed }) => {
             const { data } = await addProfile({
                 variables: {
                     image,
-                    name,
                     email,
                     bio,
                     location,
@@ -236,11 +224,6 @@ const ProfileForm = ({ collapsed }) => {
         console.log(event.target.files);
         setImage(URL.createObjectURL(event.target.files[0]));
     };
-
-    const handleNameChange = (event) => {
-        const { value } = event.target;
-        setName(value);
-    }
 
     const handleEmailChange = (event) => {
         const { value } = event.target;
@@ -289,18 +272,10 @@ const ProfileForm = ({ collapsed }) => {
                             <div className="avatarPreview" style={styles.avatarPreview}>
                                 <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
                             </div>
-                            <div className="nameInfo" style={styles.nameInfo}>
-                                <div className="nameLabel" style={styles.nameLabel}>My name is:</div>
-                                <input className="nameInput" name="name" onChange={handleNameChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].name : name} />
-                            </div>
-
+                            {data && data.data && data.data.me && (
+                                <div className="name" style={styles.name}>{data.data.me.first_name} {data.data.me.last_name}</div>
+                            )}
                         </div>
-                        {/* <div className="nameSubmit" style={styles.nameSubmit}>
-                            <div className="nameInfo" style={styles.nameInfo}>
-                                <div className="nameLabel" style={styles.nameLabel}>My name is:</div>
-                                <input className="nameInput" name="name" onChange={handleNameChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].name : name} />
-                            </div>
-                        </div> */}
                         <div className="bioSubmit" style={styles.bioSubmit}>
                             <div className="bioInfo" style={styles.bioInfo}>
                                 <div className="bioLabel" style={styles.bioLabel}>Bio:</div>

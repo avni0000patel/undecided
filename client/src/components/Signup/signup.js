@@ -41,9 +41,11 @@ const Signup = ({ collapsed }) => {
     }
 
     const [formState, setFormState] = useState({
-        username: '',
         email: '',
+        first_name: '',
+        last_name: '',
         password: '',
+        username: '',
     });
 
     const [addUser, { error, data }] = useMutation(ADD_USER);
@@ -83,6 +85,26 @@ const Signup = ({ collapsed }) => {
                 <form onSubmit={handleFormSubmit}>
                     <h1 className="signup-welcome mb-0" style={styles.signupWelcome}>Welcome!</h1>
                     <h5 className="signup-intro mb-0" style={styles.signupIntro}>Please signup to continue</h5>
+                    <Form.Control
+                        className="form-input"
+                        placeholder="Your first name"
+                        name="first_name"
+                        type="text"
+                        value={formState.first_name}
+                        onChange={handleChange}
+                        required
+                    />
+                    <br />
+                    <Form.Control
+                        className="form-input"
+                        placeholder="Your last name"
+                        name="last_name"
+                        type="text"
+                        value={formState.last_name}
+                        onChange={handleChange}
+                        required
+                    />
+                    <br />
                     <Form.Control
                         className="form-input"
                         placeholder="Your username"

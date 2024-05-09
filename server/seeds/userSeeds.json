@@ -1,12 +1,16 @@
 [
     {
-        "username": "Avni Patel",
         "email": "avnipatel@example.org",
-        "password": "password01"
+        "first_name": "Avni",
+        "last_name": "Patel",
+        "password": "password01",
+        "username": "Avni Patel"
     },
     {
-        "username": "Test",
         "email": "test@example.org",
-        "password": "password01"
+        "first_name": "Test",
+        "last_name": "User",
+        "password": "password01",
+        "username": "Test User"
     }
 ]
