@@ -105,7 +105,11 @@ const ProfileForm = ({ collapsed }) => {
             fontWeight: 600,
         },
         bioInput: {
-            border: '1px solid white',
+            backgroundColor: 'transparent',
+            border: 'none',
+            fontFamily: 'Space Mono',
+            fontStyle: 'normal',
+            fontWeight: 400,
             height: '100%',
             minHeight: '200px',
             minWidth: '300px',
@@ -157,8 +161,11 @@ const ProfileForm = ({ collapsed }) => {
             minWidth: '100px',
         },
         profileInput: {
-            border: '1px solid white',
-            flex: 1,
+            backgroundColor: 'transparent',
+            border: 'none',
+            fontFamily: 'Space Mono',
+            fontStyle: 'normal',
+            fontWeight: 400,
             padding: '5px 15px 5px 15px'
         }
     }
