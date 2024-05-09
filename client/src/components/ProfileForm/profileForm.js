@@ -289,13 +289,18 @@ const ProfileForm = ({ collapsed }) => {
                             <div className="avatarPreview" style={styles.avatarPreview}>
                                 <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
                             </div>
-                        </div>
-                        <div className="nameSubmit" style={styles.nameSubmit}>
                             <div className="nameInfo" style={styles.nameInfo}>
                                 <div className="nameLabel" style={styles.nameLabel}>My name is:</div>
                                 <input className="nameInput" name="name" onChange={handleNameChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].name : name} />
                             </div>
+
                         </div>
+                        {/* <div className="nameSubmit" style={styles.nameSubmit}>
+                            <div className="nameInfo" style={styles.nameInfo}>
+                                <div className="nameLabel" style={styles.nameLabel}>My name is:</div>
+                                <input className="nameInput" name="name" onChange={handleNameChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].name : name} />
+                            </div>
+                        </div> */}
                         <div className="bioSubmit" style={styles.bioSubmit}>
                             <div className="bioInfo" style={styles.bioInfo}>
                                 <div className="bioLabel" style={styles.bioLabel}>Bio:</div>
