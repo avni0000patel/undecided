@@ -41,13 +41,15 @@ const ProfileForm = ({ collapsed }) => {
         },
         avatarEdit: {
             position: 'absolute',
-            right: '12px',
+            right: '50px',
             zIndex: 1,
         },
         avatarPreview: {
             border: '6px solid #F8F8F8',
             borderRadius: '100%',
             boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.1)',
+            display: 'flex',
+            justifyContent: 'center',
             height: '192px',
             overflow: 'hidden',
             position: 'relative',
@@ -75,6 +77,8 @@ const ProfileForm = ({ collapsed }) => {
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
             borderRadius: '100%',
+            display: 'flex',
+            justifyContent: 'center',
             height: '100%',
             objectFit: 'cover',
             width: '100%',
@@ -102,8 +106,11 @@ const ProfileForm = ({ collapsed }) => {
         },
         bioInput: {
             border: '1px solid white',
-            flex: 1,
-            padding: '5px 15px 5px 15px'
+            height: '100%',
+            minHeight: '200px',
+            minWidth: '300px',
+            padding: '5px 15px 5px 15px',
+            width: '100%',
         },
         rightContainer: {
             float: 'right',
@@ -147,7 +154,7 @@ const ProfileForm = ({ collapsed }) => {
         },
         profileLabel: {
             marginRight: '10px',
-            minWidth: '100 px',
+            minWidth: '100px',
         },
         profileInput: {
             border: '1px solid white',
@@ -279,7 +286,7 @@ const ProfileForm = ({ collapsed }) => {
                         <div className="bioSubmit" style={styles.bioSubmit}>
                             <div className="bioInfo" style={styles.bioInfo}>
                                 <div className="bioLabel" style={styles.bioLabel}>Bio:</div>
-                                <input className="bioInput" name="bio" onChange={handleBioChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].bio : bio} />
+                                <textarea className="bioInput" name="bio" onChange={handleBioChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].bio : bio} />
                             </div>
                         </div>
                     </div>
