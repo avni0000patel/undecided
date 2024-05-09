@@ -39,15 +39,19 @@ const ProfileForm = ({ collapsed }) => {
             padding: '25px',
             position: 'relative',
         },
+        avatar: {
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+        },
         avatarEdit: {
             position: 'absolute',
-            right: '50px',
+            right: 100,
+            top: 30,
             zIndex: 1,
         },
         avatarPreview: {
-            border: '6px solid #F8F8F8',
             borderRadius: '100%',
-            boxShadow: '0px 2px 4px 0px rgba(0, 0, 0, 0.1)',
             display: 'flex',
             justifyContent: 'center',
             height: '192px',
@@ -279,12 +283,14 @@ const ProfileForm = ({ collapsed }) => {
                 >
                     <div className="leftContainer" style={styles.leftContainer}>
                         <div className="avatarSubmit" style={styles.avatarSubmit}>
-                            <div className="avatarEdit" style={styles.avatarEdit}>
-                                <input accept=".png, .jpg, .jpeg" className="imageUpload" id="imageUpload" onChange={handlePhoto} style={styles.imageUpload} type="file" />
-                                <label className="label" htmlFor="imageUpload" style={styles.label}></label>
-                            </div>
-                            <div className="avatarPreview" style={styles.avatarPreview}>
-                                <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
+                            <div className="avatar" style={styles.avatar}>
+                                <div className="avatarEdit" style={styles.avatarEdit}>
+                                    <input accept=".png, .jpg, .jpeg" className="imageUpload" id="imageUpload" onChange={handlePhoto} style={styles.imageUpload} type="file" />
+                                    <label className="label" htmlFor="imageUpload" style={styles.label}></label>
+                                </div>
+                                <div className="avatarPreview" style={styles.avatarPreview}>
+                                    <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
+                                </div>
                             </div>
                             {data && data.data && data.data.me && (
                                 <div className="name" style={styles.name}>{data.data.me.first_name} {data.data.me.last_name}</div>
