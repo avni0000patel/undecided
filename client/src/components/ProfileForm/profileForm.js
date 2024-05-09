@@ -34,6 +34,7 @@ const ProfileForm = ({ collapsed }) => {
         avatarSubmit: {
             backgroundColor: '#A4D9B1',
             border: '1px solid white',
+            borderRadius: '15px',
             margin: '0px 0px 25px 0px',
             padding: '25px',
             position: 'relative',
@@ -81,6 +82,7 @@ const ProfileForm = ({ collapsed }) => {
         bioSubmit: {
             backgroundColor: '#A4D9B1',
             border: '1px solid white',
+            borderRadius: '15px',
             margin: '0px 0px 25px 0px',
             padding: '25px',
             position: 'relative'
@@ -100,6 +102,7 @@ const ProfileForm = ({ collapsed }) => {
         nameSubmit: {
             backgroundColor: '#A4D9B1',
             border: '1px solid white',
+            borderRadius: '15px',
             margin: '0px 0px 25px 0px',
             padding: '25px',
             position: 'relative'
@@ -125,12 +128,14 @@ const ProfileForm = ({ collapsed }) => {
         userSubmit: {
             backgroundColor: '#A4D9B1',
             border: '1px solid white',
+            borderRadius: '15px',
             margin: '0px 0px 25px 0px',
             padding: '25px',
         },
         socialSubmit: {
             backgroundColor: '#A4D9B1',
             border: '1px solid white',
+            borderRadius: '15px',
             padding: '25px',
             position: 'relative',
         },
@@ -284,14 +289,13 @@ const ProfileForm = ({ collapsed }) => {
                             <div className="avatarPreview" style={styles.avatarPreview}>
                                 <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
                             </div>
-                            <input className="nameInput" name="name" onChange={handleNameChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].name : name} />
                         </div>
-                        {/* <div className="nameSubmit" style={styles.nameSubmit}>
+                        <div className="nameSubmit" style={styles.nameSubmit}>
                             <div className="nameInfo" style={styles.nameInfo}>
                                 <div className="nameLabel" style={styles.nameLabel}>My name is:</div>
                                 <input className="nameInput" name="name" onChange={handleNameChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].name : name} />
                             </div>
-                        </div> */}
+                        </div>
                         <div className="bioSubmit" style={styles.bioSubmit}>
                             <div className="bioInfo" style={styles.bioInfo}>
                                 <div className="bioLabel" style={styles.bioLabel}>Bio:</div>
@@ -301,10 +305,6 @@ const ProfileForm = ({ collapsed }) => {
                     </div>
                     <div className="rightContainer" style={styles.rightContainer}>
                         <div className="userSubmit" style={styles.userSubmit}>
-                            <div className="profileInfo" style={styles.profileInfo}>
-                                <div className="profileLabel" style={styles.profileLabel}>Name:</div>
-                                <input className="profileInput" name="name" onChange={handleNameChange} style={styles.profileInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].name : name} />
-                            </div>
                             <div className="profileInfo" style={styles.profileInfo}>
                                 <div className="profileLabel" style={styles.profileLabel}>Location:</div>
                                 <input className="profileInput" name="location" onChange={handleLocationChange} style={styles.profileInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].location : location} />
