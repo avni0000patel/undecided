@@ -10,8 +10,9 @@ const Login = ({ collapsed }) => {
     const styles = {
         login: {
             display: collapsed ? 'flex' : 'none',
-            padding: '2rem 2rem',
             float: 'right',
+            justifyContent: 'center',
+            padding: '2rem 2rem',
             width: collapsed ? 'calc(100% - 78px)' : 'auto',
         },
         loginButton: {

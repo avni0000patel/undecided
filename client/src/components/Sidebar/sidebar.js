@@ -13,8 +13,8 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
         sidebar: {
             display: "flex",
             position: "fixed",
-            zIndex: "-1",
             width: collapsed ? '0%' : '100%',
+            zIndex: "-1",
         },
         sidebarHeader: {
             alignItems: "center",
