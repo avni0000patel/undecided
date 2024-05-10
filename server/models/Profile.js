@@ -7,6 +7,9 @@ const profileSchema = new Schema({
     email: {
         type: String
     },
+    facebook: {
+        type: String
+    },
     image: {
         type: String
     },
@@ -20,6 +23,12 @@ const profileSchema = new Schema({
         type: String
     },
     name: {
+        type: String
+    },
+    phoneNumber: {
+        type: String
+    },
+    pinterest: {
         type: String
     },
     twitter: {

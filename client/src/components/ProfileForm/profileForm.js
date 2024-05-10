@@ -101,27 +101,6 @@ const ProfileForm = ({ collapsed }) => {
             padding: '5px 15px 5px 15px',
             width: '100%',
         },
-        locationInfo: {
-            alignItems: 'center',
-            display: 'flex',
-            marginBottom: '10px',
-        },
-        locationLabel: {
-            fontSize: '20px',
-            fontWeight: 600,
-            marginRight: '10px',
-            minWidth: '100px',
-        },
-        locationInput: {
-            backgroundColor: 'transparent',
-            border: 'none',
-            color: '#FFFFFF',
-            fontFamily: 'Space Mono',
-            fontStyle: 'normal',
-            fontWeight: 400,
-            minWidth: '300px',
-            padding: '5px 15px 5px 15px'
-        },
         socialInfo: {
             alignItems: 'center',
             display: 'flex',
@@ -131,7 +110,7 @@ const ProfileForm = ({ collapsed }) => {
             fontSize: '20px',
             fontWeight: 600,
             marginRight: '10px',
-            minWidth: '100px',
+            minWidth: '125px',
         },
         socialInput: {
             backgroundColor: 'transparent',
@@ -164,13 +143,16 @@ const ProfileForm = ({ collapsed }) => {
         console.log(data);
     }, [dataProfiles, data]);
 
-    const [image, setImage] = useState("");
-    const [email, setEmail] = useState("");
     const [bio, setBio] = useState("");
-    const [location, setLocation] = useState("");
-    const [twitter, setTwitter] = useState("");
-    const [linkedin, setLinkedin] = useState("");
+    const [email, setEmail] = useState("");
+    const [facebook, setFacebook] = useState("");
+    const [image, setImage] = useState("");
     const [instagram, setInstagram] = useState("");
+    const [linkedin, setLinkedin] = useState("");
+    const [location, setLocation] = useState("");
+    const [phoneNumber, setPhoneNumber] = useState("");
+    const [pinterest, setPinterest] = useState("");
+    const [twitter, setTwitter] = useState("");
 
     const [addProfile] = useMutation(ADD_PROFILE, {
         update(cache, { data: { addProfile } }) {
@@ -205,13 +187,16 @@ const ProfileForm = ({ collapsed }) => {
         try {
             const { data } = await addProfile({
                 variables: {
-                    image,
-                    email,
                     bio,
-                    location,
-                    twitter,
-                    linkedin,
+                    email,
+                    facebook,
+                    image,
                     instagram,
+                    linkedin,
+                    location,
+                    phoneNumber,
+                    pinterest,
+                    twitter
                 },
             });
 
@@ -220,29 +205,29 @@ const ProfileForm = ({ collapsed }) => {
         }
     };
 
-    const handlePhoto = (event) => {
-        console.log(event.target.files);
-        setImage(URL.createObjectURL(event.target.files[0]));
-    };
+    const handleBioChange = (event) => {
+        const { value } = event.target;
+        setBio(value);
+    }
 
     const handleEmailChange = (event) => {
         const { value } = event.target;
         setEmail(value);
     }
 
-    const handleBioChange = (event) => {
+    const handleFacebookChange = (event) => {
         const { value } = event.target;
-        setBio(value);
+        setFacebook(value);
     }
 
-    const handleLocationChange = (event) => {
-        const { value } = event.target;
-        setLocation(value);
-    }
+    const handleImageChange = (event) => {
+        console.log(event.target.files);
+        setImage(URL.createObjectURL(event.target.files[0]));
+    };
 
-    const handleTwitterChange = (event) => {
+    const handleInstagramChange = (event) => {
         const { value } = event.target;
-        setTwitter(value);
+        setInstagram(value);
     }
 
     const handleLinkedinChange = (event) => {
@@ -250,9 +235,24 @@ const ProfileForm = ({ collapsed }) => {
         setLinkedin(value);
     }
 
-    const handleInstagramChange = (event) => {
+    const handleLocationChange = (event) => {
         const { value } = event.target;
-        setInstagram(value);
+        setLocation(value);
+    }
+
+    const handlePhoneNumberChange = (event) => {
+        const { value } = event.target;
+        setPhoneNumber(value);
+    }
+
+    const handlePinterestChange = (event) => {
+        const { value } = event.target;
+        setPinterest(value);
+    }
+
+    const handleTwitterChange = (event) => {
+        const { value } = event.target;
+        setTwitter(value);
     }
 
     return (
@@ -267,7 +267,7 @@ const ProfileForm = ({ collapsed }) => {
                         <div className="col-sm-12 col-md-6 mb-3" >
                             <div className="avatar" style={styles.avatar}>
                                 <div className="avatarEdit" style={styles.avatarEdit}>
-                                    <input accept=".png, .jpg, .jpeg" className="imageUpload" id="imageUpload" onChange={handlePhoto} style={styles.imageUpload} type="file" />
+                                    <input accept=".png, .jpg, .jpeg" className="imageUpload" id="imageUpload" onChange={handleImageChange} style={styles.imageUpload} type="file" />
                                     <label className="label" htmlFor="imageUpload" style={styles.label}></label>
                                 </div>
                                 <div className="avatarPreview" style={styles.avatarPreview}>
@@ -289,11 +289,15 @@ const ProfileForm = ({ collapsed }) => {
                         <div className="col-sm-12 col-md-6 mb-3">
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Location:</div>
-                                <input className="socialInput" name="location" onChange={handleLocationChange} style={styles.locationInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].location : location} />
+                                <input className="socialInput" name="location" onChange={handleLocationChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].location : location} />
                             </div>
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Email:</div>
                                 <input className="socialInput" name="email" onChange={handleEmailChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].email : email} />
+                            </div>
+                            <div className="socialInfo" style={styles.socialInfo}>
+                                <div className="socialLabel" style={styles.socialLabel}>Phone Number:</div>
+                                <input className="socialInput" name="phoneNumber" onChange={handlePhoneNumberChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].phoneNumber : phoneNumber} />
                             </div>
                         </div>
                         <div className="col-sm-12 col-md-6 mb-3">
@@ -308,6 +312,14 @@ const ProfileForm = ({ collapsed }) => {
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Instagram:</div>
                                 <input className="socialInput" name="instagram" onChange={handleInstagramChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].instagram : instagram} />
+                            </div>
+                            <div className="socialInfo" style={styles.socialInfo}>
+                                <div className="socialLabel" style={styles.socialLabel}>Pinterest:</div>
+                                <input className="socialInput" name="pinterest" onChange={handlePinterestChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].pinterest : pinterest} />
+                            </div>
+                            <div className="socialInfo" style={styles.socialInfo}>
+                                <div className="socialLabel" style={styles.socialLabel}>Facebook:</div>
+                                <input className="socialInput" name="facebook" onChange={handleFacebookChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].facebook : facebook} />
                             </div>
                         </div>
                     </div>

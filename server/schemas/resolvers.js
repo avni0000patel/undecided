@@ -48,16 +48,19 @@ const resolvers = {
 
             return { token, user };
         },
-        addProfile: async (parent, { bio, email, image, instagram, linkedin, location, name, twitter }, context) => {
+        addProfile: async (parent, { bio, email, facebook, image, instagram, linkedin, location, name, phoneNumber, pinterest, twitter }, context) => {
             if (context.user) {
                 const profile = await Profile.create({
                     bio,
                     email,
+                    facebook,
                     image,
                     instagram,
                     linkedin,
                     location,
                     name,
+                    phoneNumber,
+                    pinterest,
                     twitter,
                 });
 
