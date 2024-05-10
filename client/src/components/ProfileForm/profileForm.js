@@ -134,6 +134,7 @@ const ProfileForm = ({ collapsed }) => {
             fontFamily: 'Space Mono',
             fontStyle: 'normal',
             fontWeight: 400,
+            minWidth: '300px',
             padding: '5px 15px 5px 15px'
         },
         socialSubmit: {
@@ -161,6 +162,7 @@ const ProfileForm = ({ collapsed }) => {
             fontFamily: 'Space Mono',
             fontStyle: 'normal',
             fontWeight: 400,
+            minWidth: '300px',
             padding: '5px 15px 5px 15px'
         },
         profileSubmitContainer: {
