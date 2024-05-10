@@ -5,7 +5,7 @@ export default function Home({ collapsed }) {
     home: {
       alignItems: 'center',
       color: "#FFFFFF",
-      display: 'flex',
+      display: collapsed ? 'flex' : 'none',
       flexDirection: 'column',
       float: 'right',
       fontFamily: "Indie Flower",
@@ -14,7 +14,7 @@ export default function Home({ collapsed }) {
       justifyContent: 'center',
       padding: '2rem 2rem',
       textAlign: 'center',
-      width: collapsed ? 'calc(100% - 78px)' : 'calc(100% - 268px)',
+      width: collapsed ? 'calc(100% - 78px)' : 'auto',
     },
     heading: {
       fontSize: '2rem',

@@ -13,6 +13,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             display: "flex",
             position: "fixed",
             zIndex: "-1",
+            width: collapsed ? '0%' : '100%',
         },
         sidebarHeader: {
             alignItems: "center",
@@ -59,7 +60,7 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
 
     return (
         <>
-            <ProSidebar collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} id="header" style={styles.sidebar}>
+            <ProSidebar className="sidebar" collapsed={collapsed} onToggle={() => setCollapsed(!collapsed)} id="header" style={styles.sidebar}>
                 <SidebarHeader className="sidebar-header" style={styles.sidebarHeader}>
                     {collapsed && (
                         <div className="collapse-icon" onClick={() => setCollapsed(!collapsed)}>

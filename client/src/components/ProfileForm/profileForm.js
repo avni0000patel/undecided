@@ -9,7 +9,7 @@ const ProfileForm = ({ collapsed }) => {
         profileForm: {
             alignItems: 'center',
             color: '#FFFFFF',
-            display: 'flex',
+            display: collapsed ? 'flex' : 'none',
             flexDirection: 'column',
             float: 'right',
             fontFamily: 'Indie Flower',
@@ -17,7 +17,7 @@ const ProfileForm = ({ collapsed }) => {
             fontWeight: 400,
             justifyContent: 'flex-start',
             padding: '2rem 2rem',
-            width: collapsed ? 'calc(100% - 78px)' : 'calc(100% - 268px)',
+            width: collapsed ? 'calc(100% - 78px)' : 'auto',
         },
         box1: {
             backgroundColor: '#A4D9B1',
@@ -120,7 +120,7 @@ const ProfileForm = ({ collapsed }) => {
             fontStyle: 'normal',
             fontWeight: 400,
             // minWidth: '280px',
-            padding: '5px 15px 5px 15px'
+            padding: '5px 15px 5px 15px',
         },
         profileSubmitContainer: {
             bottom: '10px',
