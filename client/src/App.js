@@ -12,6 +12,7 @@ import Background from './components/Background/background';
 import Home from './components/Home/home';
 import Signup from './components/Signup/signup';
 import Login from './components/Login/login';
+import Design from "./components/Design/design";
 import ProfileForm from "./components/ProfileForm/profileForm";
 
 import Sidebar from './components/Sidebar/sidebar';
@@ -63,6 +64,10 @@ function App() {
             <Route
               path="/login"
               element={<Login collapsed={isSidebarCollapsed} />}
+            />
+            <Route
+              path="/design"
+              element={<Design collapsed={isSidebarCollapsed} />}
             />
             <Route
               path="/profile"

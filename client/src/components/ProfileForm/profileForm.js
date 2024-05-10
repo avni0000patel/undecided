@@ -97,7 +97,6 @@ const ProfileForm = ({ collapsed }) => {
             fontWeight: 400,
             height: '100%',
             minHeight: '200px',
-            // minWidth: '300px',
             padding: '5px 15px 5px 15px',
             width: '100%',
         },
@@ -119,18 +118,20 @@ const ProfileForm = ({ collapsed }) => {
             fontFamily: 'Space Mono',
             fontStyle: 'normal',
             fontWeight: 400,
-            // minWidth: '280px',
             padding: '5px 15px 5px 15px',
         },
         profileSubmitContainer: {
-            bottom: '10px',
+            bottom: '25px',
             position: 'absolute',
-            right: '10px',
+            right: '25px',
         },
         profileSubmit: {
-            border: '1px solid black',
-            margin: '0 auto',
-            marginTop: '10px',
+            backgroundColor: '#A4D9B1',
+            border: '1px solid white',
+            borderRadius: '15px',
+            color: '#FFFFFF',
+            fontSize: '36px',
+            justifyContent: 'center',
             textAlign: 'center',
         },
     }
@@ -148,17 +149,14 @@ const ProfileForm = ({ collapsed }) => {
     const [facebook, setFacebook] = useState("");
     const [image, setImage] = useState("");
     const [instagram, setInstagram] = useState("");
-    const [linkedin, setLinkedin] = useState("");
     const [location, setLocation] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
     const [pinterest, setPinterest] = useState("");
-    const [twitter, setTwitter] = useState("");
 
     const [addProfile] = useMutation(ADD_PROFILE, {
         update(cache, { data: { addProfile } }) {
             try {
                 const { profiles } = cache.readQuery({ query: QUERY_PROFILES });
-
                 cache.writeQuery({
                     query: QUERY_PROFILES,
                     data: { profiles: [addProfile, ...profiles] },
@@ -166,8 +164,6 @@ const ProfileForm = ({ collapsed }) => {
             } catch (error) {
                 throw error;
             }
-
-            // update me object's cache
             try {
                 const { me } = cache.readQuery({ query: QUERY_ME });
 
@@ -192,11 +188,9 @@ const ProfileForm = ({ collapsed }) => {
                     facebook,
                     image,
                     instagram,
-                    linkedin,
                     location,
                     phoneNumber,
                     pinterest,
-                    twitter
                 },
             });
 
@@ -230,11 +224,6 @@ const ProfileForm = ({ collapsed }) => {
         setInstagram(value);
     }
 
-    const handleLinkedinChange = (event) => {
-        const { value } = event.target;
-        setLinkedin(value);
-    }
-
     const handleLocationChange = (event) => {
         const { value } = event.target;
         setLocation(value);
@@ -248,11 +237,6 @@ const ProfileForm = ({ collapsed }) => {
     const handlePinterestChange = (event) => {
         const { value } = event.target;
         setPinterest(value);
-    }
-
-    const handleTwitterChange = (event) => {
-        const { value } = event.target;
-        setTwitter(value);
     }
 
     return (
@@ -301,14 +285,10 @@ const ProfileForm = ({ collapsed }) => {
                             </div>
                         </div>
                         <div className="col-sm-12 col-lg-6">
-                            {/* <div className="socialInfo" style={styles.socialInfo}>
-                                <div className="socialLabel" style={styles.socialLabel}>Twitter:</div>
-                                <textarea className="socialInput" name="twitter" onChange={handleTwitterChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].twitter : twitter} />
-                            </div>
                             <div className="socialInfo" style={styles.socialInfo}>
-                                <div className="socialLabel" style={styles.socialLabel}>LinkedIn:</div>
-                                <textarea className="socialInput" name="linkedin" onChange={handleLinkedinChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].linkedin : linkedin} />
-                            </div> */}
+                                <div className="socialLabel" style={styles.socialLabel}>Facebook:</div>
+                                <input className="socialInput" name="facebook" onChange={handleFacebookChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].facebook : facebook} />
+                            </div>
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Instagram:</div>
                                 <input className="socialInput" name="instagram" onChange={handleInstagramChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].instagram : instagram} />
@@ -316,10 +296,6 @@ const ProfileForm = ({ collapsed }) => {
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Pinterest:</div>
                                 <input className="socialInput" name="pinterest" onChange={handlePinterestChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].pinterest : pinterest} />
-                            </div>
-                            <div className="socialInfo" style={styles.socialInfo}>
-                                <div className="socialLabel" style={styles.socialLabel}>Facebook:</div>
-                                <input className="socialInput" name="facebook" onChange={handleFacebookChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].facebook : facebook} />
                             </div>
                         </div>
                     </div>

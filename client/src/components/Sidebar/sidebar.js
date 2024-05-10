@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { CgProfile } from "react-icons/cg";
 import { FaBars, FaSignInAlt, FaUserPlus } from 'react-icons/fa';
 import { FiHome, FiLogOut } from "react-icons/fi";
 import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from "react-pro-sidebar";
@@ -27,15 +28,9 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             color: "#FFFFFF",
             marginLeft: "10px",
         },
-        sidebarHome: {
+        sidebarIcon: {
             color: "#FFFFFF",
         },
-        sidebarLogin: {
-            color: "#FFFFFF",
-        },
-        sidebarSignup: {
-            color: "#FFFFFF",
-        }
     }
 
     const [activeIndex, setActiveIndex] = useState(() => {
@@ -43,7 +38,9 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
             window.location.pathname === '/' ? 0
                 : window.location.pathname === '/login' ? 1
                     : window.location.pathname === '/signup' ? 2
-                        : 0;
+                        : window.location.pathname === '/profile' ? 3
+                            : window.location.pathname === '/design' ? 4
+                                : 0;
         return initialIndex;
     });
 
@@ -82,27 +79,19 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                     <>
                         {Auth.loggedIn() ? (
                             <>
-                                {/* <div className="profile">
-                                    <Link
-                                        to="/profile"
-                                    >
-                                        Edit Profile
-                                    </Link> */}
-                                {/* <ProfileForm /> */}
-                                {/* </div> */}
                                 <SidebarContent>
                                     <Menu iconShape="square">
-                                        <MenuItem active={activeIndex === 0} icon={<FiHome />} style={styles.sidebarHome}>
+                                        <MenuItem active={activeIndex === 3} icon={<CgProfile />} style={styles.sidebarIcon}>
                                             Profile
-                                            <Link id="MenuItemProfile" to="/profile" onClick={() => setActiveIndex(0)} />
+                                            <Link id="MenuItemProfile" to="/profile" onClick={() => { setActiveIndex(3); setCollapsed(!collapsed); }} />
                                         </MenuItem>
-                                        <MenuItem active={activeIndex === 1} icon={<FiHome />} style={styles.sidebarHome}>
-                                            Home
-                                            <Link id="MenuItemHome" to="/" onClick={() => setActiveIndex(1)} />
+                                        <MenuItem active={activeIndex === 4} icon={<FiHome />} style={styles.sidebarIcon}>
+                                            Design
+                                            <Link id="MenuItemDesign" to="/design" onClick={() => { setActiveIndex(4); setCollapsed(!collapsed); }} />
                                         </MenuItem>
-                                        <MenuItem active={activeIndex === 2} icon={<FiLogOut />} style={styles.sidebarHome}>
+                                        <MenuItem active={activeIndex === 2} icon={<FiLogOut />} style={styles.sidebarIcon}>
                                             Logout
-                                            <Link id="MenuItemLogout" onClick={logout} />
+                                            <Link id="MenuItemLogout" onClick={(e) => { logout(e); setCollapsed(!collapsed); }} />
                                         </MenuItem>
                                     </Menu>
                                 </SidebarContent>
@@ -110,17 +99,17 @@ const Sidebar = ({ collapsed, setCollapsed }) => {
                         ) : (
                             <SidebarContent>
                                 <Menu iconShape="square">
-                                    <MenuItem active={activeIndex === 0} icon={<FiHome />} style={styles.sidebarHome}>
+                                    <MenuItem active={activeIndex === 0} icon={<FiHome />} style={styles.sidebarIcon}>
                                         Home
-                                        <Link id="MenuItemHome" to="/" onClick={() => setActiveIndex(0)} />
+                                        <Link id="MenuItemHome" to="/" onClick={() => { setActiveIndex(0); setCollapsed(!collapsed); }} />
                                     </MenuItem>
-                                    <MenuItem active={activeIndex === 1} icon={<FaSignInAlt />} style={styles.sidebarLogin}>
+                                    <MenuItem active={activeIndex === 1} icon={<FaSignInAlt />} style={styles.sidebarIcon}>
                                         Login
-                                        <Link id="MenuItemLogin" to="/login" onClick={() => setActiveIndex(1)} />
+                                        <Link id="MenuItemLogin" to="/login" onClick={() => { setActiveIndex(2); setCollapsed(!collapsed); }} />
                                     </MenuItem>
-                                    <MenuItem active={activeIndex === 2} icon={<FaUserPlus />} style={styles.sidebarSignup}>
+                                    <MenuItem active={activeIndex === 2} icon={<FaUserPlus />} style={styles.sidebarIcon}>
                                         Signup
-                                        <Link id="MenuItemSignup" to="/signup" onClick={() => setActiveIndex(2)} />
+                                        <Link id="MenuItemSignup" to="/signup" onClick={() => { setActiveIndex(2); setCollapsed(!collapsed); }} />
                                     </MenuItem>
                                 </Menu>
                             </SidebarContent>
