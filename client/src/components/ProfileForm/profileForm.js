@@ -27,14 +27,6 @@ const ProfileForm = ({ collapsed }) => {
             padding: '25px',
             position: 'relative',
         },
-        avatarSubmit: {
-            backgroundColor: '#A4D9B1',
-            border: '1px solid white',
-            borderRadius: '15px',
-            margin: '0px 0px 25px 0px',
-            padding: '25px',
-            position: 'relative',
-        },
         avatar: {
             alignItems: 'center',
             display: 'flex',
@@ -89,14 +81,6 @@ const ProfileForm = ({ collapsed }) => {
             fontWeight: 700,
             justifyContent: 'center'
         },
-        bioSubmit: {
-            backgroundColor: '#A4D9B1',
-            border: '1px solid white',
-            borderRadius: '15px',
-            margin: '0px 0px 25px 0px',
-            padding: '25px',
-            position: 'relative',
-        },
         bioInfo: {
             marginBottom: '10px',
         },
@@ -116,13 +100,6 @@ const ProfileForm = ({ collapsed }) => {
             // minWidth: '300px',
             padding: '5px 15px 5px 15px',
             width: '100%',
-        },
-        locationSubmit: {
-            backgroundColor: '#A4D9B1',
-            border: '1px solid white',
-            borderRadius: '15px',
-            margin: '0px 0px 25px 0px',
-            padding: '25px',
         },
         locationInfo: {
             alignItems: 'center',
@@ -144,13 +121,6 @@ const ProfileForm = ({ collapsed }) => {
             fontWeight: 400,
             minWidth: '300px',
             padding: '5px 15px 5px 15px'
-        },
-        socialSubmit: {
-            backgroundColor: '#A4D9B1',
-            border: '1px solid white',
-            borderRadius: '15px',
-            padding: '25px',
-            position: 'relative',
         },
         socialInfo: {
             alignItems: 'center',
@@ -294,7 +264,7 @@ const ProfileForm = ({ collapsed }) => {
                     style={styles.profileFormSubmit}
                 >
                     <div className="box1 row align-items-start no-gutters" style={styles.box1}>
-                        <div className="avatarSubmit col-sm-12 col-md-6 mb-3" >
+                        <div className="col-sm-12 col-md-6 mb-3" >
                             <div className="avatar" style={styles.avatar}>
                                 <div className="avatarEdit" style={styles.avatarEdit}>
                                     <input accept=".png, .jpg, .jpeg" className="imageUpload" id="imageUpload" onChange={handlePhoto} style={styles.imageUpload} type="file" />
@@ -308,35 +278,37 @@ const ProfileForm = ({ collapsed }) => {
                                 <div className="name" style={styles.name}>{data.data.me.first_name} {data.data.me.last_name}</div>
                             )}
                         </div>
-                        <div className="bioSubmit col-sm-12 col-md-6 mb-3">
+                        <div className="col-sm-12 col-md-6 mb-3">
                             <div className="bioInfo" style={styles.bioInfo}>
                                 <div className="bioLabel" style={styles.bioLabel}>Bio:</div>
                                 <textarea className="bioInput" name="bio" onChange={handleBioChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].bio : bio} />
                             </div>
                         </div>
                     </div>
-                    <div className="locationSubmit" style={styles.locationSubmit}>
-                        <div className="locationInfo" style={styles.locationInfo}>
-                            <div className="locationLabel" style={styles.locationLabel}>Location:</div>
-                            <input className="locationInput" name="location" onChange={handleLocationChange} style={styles.locationInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].location : location} />
+                    <div className="box1 row align-items-start no-gutters" style={styles.box1}>
+                        <div className="col-sm-12 col-md-6 mb-3">
+                            <div className="socialInfo" style={styles.socialInfo}>
+                                <div className="socialLabel" style={styles.socialLabel}>Location:</div>
+                                <input className="socialInput" name="location" onChange={handleLocationChange} style={styles.locationInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].location : location} />
+                            </div>
+                            <div className="socialInfo" style={styles.socialInfo}>
+                                <div className="socialLabel" style={styles.socialLabel}>Email:</div>
+                                <input className="socialInput" name="email" onChange={handleEmailChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].email : email} />
+                            </div>
                         </div>
-                    </div>
-                    <div className="socialSubmit" style={styles.socialSubmit}>
-                        <div className="socialInfo" style={styles.socialInfo}>
-                            <div className="socialLabel" style={styles.socialLabel}>Email:</div>
-                            <input className="socialInput" name="email" onChange={handleEmailChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].email : email} />
-                        </div>
-                        <div className="socialInfo" style={styles.socialInfo}>
-                            <div className="socialLabel" style={styles.socialLabel}>Twitter:</div>
-                            <input className="socialInput" name="twitter" onChange={handleTwitterChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].twitter : twitter} />
-                        </div>
-                        <div className="socialInfo" style={styles.socialInfo}>
-                            <div className="socialLabel" style={styles.socialLabel}>LinkedIn:</div>
-                            <input className="socialInput" name="linkedin" onChange={handleLinkedinChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].linkedin : linkedin} />
-                        </div>
-                        <div className="socialInfo" style={styles.socialInfo}>
-                            <div className="socialLabel" style={styles.socialLabel}>Instagram:</div>
-                            <input className="socialInput" name="instagram" onChange={handleInstagramChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].instagram : instagram} />
+                        <div className="col-sm-12 col-md-6 mb-3">
+                            <div className="socialInfo" style={styles.socialInfo}>
+                                <div className="socialLabel" style={styles.socialLabel}>Twitter:</div>
+                                <input className="socialInput" name="twitter" onChange={handleTwitterChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].twitter : twitter} />
+                            </div>
+                            <div className="socialInfo" style={styles.socialInfo}>
+                                <div className="socialLabel" style={styles.socialLabel}>LinkedIn:</div>
+                                <input className="socialInput" name="linkedin" onChange={handleLinkedinChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].linkedin : linkedin} />
+                            </div>
+                            <div className="socialInfo" style={styles.socialInfo}>
+                                <div className="socialLabel" style={styles.socialLabel}>Instagram:</div>
+                                <input className="socialInput" name="instagram" onChange={handleInstagramChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].instagram : instagram} />
+                            </div>
                         </div>
                     </div>
                     <div className="profileSubmitContainer" style={styles.profileSubmitContainer}>
