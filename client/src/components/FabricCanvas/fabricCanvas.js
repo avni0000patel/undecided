@@ -86,6 +86,15 @@ const FabricCanvas = () => {
                 />
             </div>
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <label htmlFor="patternUpload">Upload Pattern Image:</label>
+                <input
+                    type="file"
+                    id="patternUpload"
+                    accept="image/*"
+                    onChange={handleImageUpload}
+                />
+            </div>
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
                 <label htmlFor="skirtWidth">Skirt Width:</label>
                 <input
                     type="range"
@@ -103,15 +112,6 @@ const FabricCanvas = () => {
                     max="225"
                     value={height}
                     onChange={(e) => setHeight(parseInt(e.target.value))}
-                />
-            </div>
-            <div style={{ textAlign: 'center', marginTop: '20px' }}>
-                <label htmlFor="patternUpload">Upload Pattern Image:</label>
-                <input
-                    type="file"
-                    id="patternUpload"
-                    accept="image/*"
-                    onChange={handleImageUpload}
                 />
             </div>
         </div>
