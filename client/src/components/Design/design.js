@@ -1,8 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Navigation({ collapsed }) {
     const styles = {
-        navigation: {
+        design: {
             alignItems: 'center',
             color: "#FFFFFF",
             display: collapsed ? 'flex' : 'none',
@@ -17,11 +18,12 @@ export default function Navigation({ collapsed }) {
             width: collapsed ? 'calc(100% - 78px)' : 'auto',
         },
         heading: {
-            fontSize: '2rem',
+            fontSize: '36px',
+            fontWeight: 600,
             marginBottom: '1rem',
         },
         description: {
-            fontSize: '1.2rem',
+            fontSize: '24px',
             marginBottom: '2rem',
             maxWidth: '600px',
         },
@@ -31,22 +33,32 @@ export default function Navigation({ collapsed }) {
             justifyContent: 'space-around',
         },
         infoBox: {
-            border: '1px solid #ccc',
+            border: '1px solid #FFFFFFF',
             borderRadius: '8px',
-            marginBottom: '1rem',
-            padding: '1rem',
+            padding: '20px 20px 20px 20px',
             width: '300px',
         },
+        infoLink: {
+            textDecoration: 'none',
+        },
         infoTitle: {
-            fontSize: '1.2rem',
+            color: '#FFFFFF',
+            fontSize: '36px',
+            fontWeight: 600,
             marginBottom: '0.5rem',
+            textDecoration: 'none',
         },
         infoText: {
-            fontSize: '1rem',
+            color: '#FFFFFF',
+            fontFamily: 'Space Mono',
+            fontSize: '14px',
+            fontStyle: 'normal',
+            fontWeight: 400,
+            textDecoration: 'none',
         },
     }
     return (
-        <div className="navigation" style={styles.navigation}>
+        <div className="design" style={styles.design}>
             {/* <div style={styles.inside}> */}
             <h1 style={styles.heading}>Welcome to Nest Craft!</h1>
             <p style={styles.description}>Bring your vision to life.</p>
@@ -56,8 +68,10 @@ export default function Navigation({ collapsed }) {
                     <p style={styles.infoText}>Browse through a vast collection of Indian clothing designs, from traditional to modern.</p>
                 </div>
                 <div style={styles.infoBox}>
-                    <h2 style={styles.infoTitle}>Create Your Vision</h2>
-                    <p style={styles.infoText}>Use our design tools to customize your clothing, ensuring it reflects your unique style.</p>
+                    <Link to="/createyourvision" style={styles.infoLink}>
+                        <h2 style={styles.infoTitle}>Create Your Vision</h2>
+                        <p style={styles.infoText}>Use our design tools to customize your clothing, ensuring it reflects your unique style.</p>
+                    </Link>
                 </div>
             </div>
             {/* </div> */}

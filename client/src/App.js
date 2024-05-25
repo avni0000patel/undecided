@@ -9,6 +9,7 @@ import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Background from './components/Background/background';
+import CreateYourVision from './components/CreateYourVision/createYourVision';
 import Home from './components/Home/home';
 import Signup from './components/Signup/signup';
 import Login from './components/Login/login';
@@ -46,23 +47,26 @@ function App() {
         <>
           <Background />
           <Sidebar collapsed={isSidebarCollapsed} setCollapsed={setIsSidebarCollapsed} />
-          {/* <Nav /> */}
           <Routes>
+            <Route
+              path="/createyourvision"
+              element={<CreateYourVision collapsed={isSidebarCollapsed} />}
+            />
+            <Route
+              path="/design"
+              element={<Design collapsed={isSidebarCollapsed} />}
+            />
             <Route
               path="/"
               element={<Home collapsed={isSidebarCollapsed} />}
-            />
-            <Route
-              path="/signup"
-              element={<Signup collapsed={isSidebarCollapsed} />}
             />
             <Route
               path="/login"
               element={<Login collapsed={isSidebarCollapsed} />}
             />
             <Route
-              path="/design"
-              element={<Design collapsed={isSidebarCollapsed} />}
+              path="/signup"
+              element={<Signup collapsed={isSidebarCollapsed} />}
             />
             <Route
               path="/profile"

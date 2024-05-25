@@ -25,25 +25,6 @@ export default function Home({ collapsed }) {
       marginBottom: '2rem',
       maxWidth: '600px',
     },
-    infoContainer: {
-      display: 'flex',
-      flexWrap: 'wrap',
-      justifyContent: 'space-around',
-    },
-    infoBox: {
-      border: '1px solid #ccc',
-      borderRadius: '8px',
-      marginBottom: '1rem',
-      padding: '1rem',
-      width: '300px',
-    },
-    infoTitle: {
-      fontSize: '1.2rem',
-      marginBottom: '0.5rem',
-    },
-    infoText: {
-      fontSize: '1rem',
-    },
   }
   return (
     <div className="home" style={styles.home}>
