@@ -6,6 +6,7 @@ const FabricCanvas = () => {
     const [color, setColor] = useState('#ff69b4');
     const [width, setWidth] = useState(300);
     const [height, setHeight] = useState(200);
+    const [patternImage, setPatternImage] = useState(null);
     const skirtRef = useRef(null);
 
     useEffect(() => {
@@ -47,10 +48,28 @@ const FabricCanvas = () => {
             });
             skirtRef.current.canvas.renderAll();
         }
-
-        console.log(width)
-        console.log(height)
     }, [width, height]);
+
+    const handleImageUpload = (e) => {
+        const file = e.target.files[0];
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const imgObj = new Image();
+            imgObj.src = event.target.result;
+            imgObj.onload = () => {
+                const pattern = new fabric.Pattern({
+                    source: imgObj,
+                    repeat: 'repeat'
+                });
+                // Set the pattern as fill for the skirt
+                if (skirtRef.current) {
+                    skirtRef.current.set({ fill: pattern });
+                    skirtRef.current.canvas.renderAll();
+                }
+            };
+        };
+        reader.readAsDataURL(file);
+    };
 
     return (
         <div>
@@ -84,6 +103,15 @@ const FabricCanvas = () => {
                     max="225"
                     value={height}
                     onChange={(e) => setHeight(parseInt(e.target.value))}
+                />
+            </div>
+            <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                <label htmlFor="patternUpload">Upload Pattern Image:</label>
+                <input
+                    type="file"
+                    id="patternUpload"
+                    accept="image/*"
+                    onChange={handleImageUpload}
                 />
             </div>
         </div>
