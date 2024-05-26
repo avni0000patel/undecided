@@ -55,6 +55,23 @@ const FabricCanvas = () => {
         }
     }, [width, height, flare]);
 
+    useEffect(() => {
+        if (skirtRef.current) {
+            const canvas = skirtRef.current.canvas;
+            const canvasWidth = canvas.width;
+            const canvasHeight = canvas.height;
+
+            const skirtWidth = skirtRef.current.width;
+            const skirtHeight = skirtRef.current.height;
+
+            const offsetX = (canvasWidth - skirtWidth) / 2;
+            const offsetY = (canvasHeight - skirtHeight) / 2;
+
+            skirtRef.current.set({ left: offsetX, top: offsetY });
+            canvas.renderAll();
+        }
+    }, [skirtRef.current]);
+
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
         const reader = new FileReader();
@@ -88,7 +105,7 @@ const FabricCanvas = () => {
     return (
         <div>
             <div id="canvas-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
-                <canvas ref={canvasRef} width="600" height="400" style={{ margin: 'auto' }}></canvas>
+                <canvas ref={canvasRef} width="1500" height="400" style={{ margin: 'auto' }}></canvas>
             </div>
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
                 <label htmlFor="colorPicker">Choose Skirt Color:</label>
