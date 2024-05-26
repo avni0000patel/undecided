@@ -6,6 +6,7 @@ const FabricCanvas = () => {
     const [color, setColor] = useState('#ff69b4');
     const [width, setWidth] = useState(300);
     const [height, setHeight] = useState(200);
+    const [flare, setFlare] = useState(50); // New state for flare
     const [patternImage, setPatternImage] = useState(null);
     const skirtRef = useRef(null);
 
@@ -14,8 +15,8 @@ const FabricCanvas = () => {
         const initialSkirt = new fabric.Polygon([
             { x: 150, y: 100 },
             { x: 150 + width, y: 100 },
-            { x: 150 + width + 50, y: 100 + height },
-            { x: 150 - 50, y: 100 + height }
+            { x: 150 + width + flare, y: 100 + height },
+            { x: 150 - flare, y: 100 + height }
         ], {
             fill: color,
             selectable: true,
@@ -42,13 +43,13 @@ const FabricCanvas = () => {
                 points: [
                     { x: 150, y: 100 },
                     { x: 150 + width, y: 100 },
-                    { x: 150 + width + 50, y: 100 + height },
-                    { x: 150 - 50, y: 100 + height }
+                    { x: 150 + width + flare, y: 100 + height },
+                    { x: 150 - flare, y: 100 + height }
                 ]
             });
             skirtRef.current.canvas.renderAll();
         }
-    }, [width, height]);
+    }, [width, height, flare]);
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];
@@ -61,7 +62,6 @@ const FabricCanvas = () => {
                     source: imgObj,
                     repeat: 'repeat'
                 });
-                // Set the pattern as fill for the skirt
                 if (skirtRef.current) {
                     skirtRef.current.set({ fill: pattern });
                     skirtRef.current.canvas.renderAll();
@@ -112,6 +112,15 @@ const FabricCanvas = () => {
                     max="225"
                     value={height}
                     onChange={(e) => setHeight(parseInt(e.target.value))}
+                />
+                <label htmlFor="skirtFlare">Skirt Flare:</label>
+                <input
+                    type="range"
+                    id="skirtFlare"
+                    min="10"
+                    max="500"
+                    value={flare}
+                    onChange={(e) => setFlare(parseInt(e.target.value))}
                 />
             </div>
         </div>
