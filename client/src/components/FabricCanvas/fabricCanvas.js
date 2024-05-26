@@ -4,8 +4,13 @@ import { fabric } from 'fabric';
 const FabricCanvas = () => {
     const canvasRef = useRef(null);
     const [color, setColor] = useState('#ff69b4');
-    const [width, setWidth] = useState(300);
-    const [height, setHeight] = useState(200);
+
+    // Convert 30 inches and 45 inches to pixel values using the mapping
+    const initialWidth = ((30 - 5) * (300 - 100) / (60 - 5)) + 100; // 30 inches to pixels
+    const initialHeight = ((45 - 5) * (300 - 100) / (60 - 5)) + 100; // 45 inches to pixels
+
+    const [width, setWidth] = useState(initialWidth);
+    const [height, setHeight] = useState(initialHeight);
     const [flare, setFlare] = useState(0);
     const [patternImage, setPatternImage] = useState(null);
     const skirtRef = useRef(null);
@@ -28,7 +33,7 @@ const FabricCanvas = () => {
         return () => {
             canvas.dispose();
         };
-    }, []);
+    }, [color, flare, height, width]);
 
     useEffect(() => {
         if (skirtRef.current) {
