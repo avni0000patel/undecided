@@ -255,7 +255,7 @@ const ProfileForm = ({ collapsed }) => {
                                     <label className="label" htmlFor="imageUpload" style={styles.label}></label>
                                 </div>
                                 <div className="avatarPreview" style={styles.avatarPreview}>
-                                    <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
+                                    <img alt="" className="imagePreview" src={dataProfiles.data && dataProfiles.data.profiles.length > 0 && dataProfiles.data.profiles.image != null ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].image : image} style={styles.imagePreview} />
                                 </div>
                             </div>
                             {data && data.data && data.data.me && (
