@@ -77,7 +77,7 @@ const FabricCanvas = () => {
     };
 
     const widthInches = mapToInches(width, 100, 300, 5, 60);
-    const heightInches = mapToInches(height, 100, 225, 5, 45);
+    const heightInches = mapToInches(height, 100, 300, 5, 60);
     const flareInches = mapToInches(flare, 0, 500, 0, 50);
 
     return (
@@ -120,7 +120,7 @@ const FabricCanvas = () => {
                     type="range"
                     id="skirtHeight"
                     min="100"
-                    max="225"
+                    max="300"
                     value={height}
                     onChange={(e) => setHeight(parseInt(e.target.value))}
                 />
