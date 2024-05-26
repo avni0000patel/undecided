@@ -6,7 +6,7 @@ const FabricCanvas = () => {
     const [color, setColor] = useState('#ff69b4');
     const [width, setWidth] = useState(300);
     const [height, setHeight] = useState(200);
-    const [flare, setFlare] = useState(50); // New state for flare
+    const [flare, setFlare] = useState(50);
     const [patternImage, setPatternImage] = useState(null);
     const skirtRef = useRef(null);
 
@@ -71,6 +71,16 @@ const FabricCanvas = () => {
         reader.readAsDataURL(file);
     };
 
+    const mapToInches = (value, minPx, maxPx, minInches, maxInches) => {
+        const rangePx = maxPx - minPx;
+        const rangeInches = maxInches - minInches;
+        return ((value - minPx) * rangeInches / rangePx + minInches).toFixed(2);
+    };
+
+    const widthInches = mapToInches(width, 100, 300, 5, 60);
+    const heightInches = mapToInches(height, 100, 225, 5, 45);
+    const flareInches = mapToInches(flare, 10, 500, 0, 50);
+
     return (
         <div>
             <div id="canvas-container" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
@@ -104,6 +114,8 @@ const FabricCanvas = () => {
                     value={width}
                     onChange={(e) => setWidth(parseInt(e.target.value))}
                 />
+                <span>{widthInches} inches</span>
+                <br />
                 <label htmlFor="skirtHeight">Skirt Height:</label>
                 <input
                     type="range"
@@ -113,6 +125,8 @@ const FabricCanvas = () => {
                     value={height}
                     onChange={(e) => setHeight(parseInt(e.target.value))}
                 />
+                <span>{heightInches} inches</span>
+                <br />
                 <label htmlFor="skirtFlare">Skirt Flare:</label>
                 <input
                     type="range"
@@ -122,6 +136,7 @@ const FabricCanvas = () => {
                     value={flare}
                     onChange={(e) => setFlare(parseInt(e.target.value))}
                 />
+                <span>{flareInches} inches</span>
             </div>
         </div>
     );
