@@ -6,7 +6,7 @@ const FabricCanvas = () => {
     const [color, setColor] = useState('#ff69b4');
     const [width, setWidth] = useState(300);
     const [height, setHeight] = useState(200);
-    const [flare, setFlare] = useState(50);
+    const [flare, setFlare] = useState(0);
     const [patternImage, setPatternImage] = useState(null);
     const skirtRef = useRef(null);
 
@@ -39,14 +39,13 @@ const FabricCanvas = () => {
 
     useEffect(() => {
         if (skirtRef.current) {
-            skirtRef.current.set({
-                points: [
-                    { x: 150, y: 100 },
-                    { x: 150 + width, y: 100 },
-                    { x: 150 + width + flare, y: 100 + height },
-                    { x: 150 - flare, y: 100 + height }
-                ]
-            });
+            const points = [
+                { x: 150, y: 100 },
+                { x: 150 + width, y: 100 },
+                { x: 150 + width + flare, y: 100 + height },
+                { x: 150 - flare, y: 100 + height }
+            ];
+            skirtRef.current.set({ points });
             skirtRef.current.canvas.renderAll();
         }
     }, [width, height, flare]);
@@ -79,7 +78,7 @@ const FabricCanvas = () => {
 
     const widthInches = mapToInches(width, 100, 300, 5, 60);
     const heightInches = mapToInches(height, 100, 225, 5, 45);
-    const flareInches = mapToInches(flare, 10, 500, 0, 50);
+    const flareInches = mapToInches(flare, 0, 500, 0, 50);
 
     return (
         <div>
@@ -131,7 +130,7 @@ const FabricCanvas = () => {
                 <input
                     type="range"
                     id="skirtFlare"
-                    min="10"
+                    min="0"
                     max="500"
                     value={flare}
                     onChange={(e) => setFlare(parseInt(e.target.value))}
