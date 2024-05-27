@@ -12,7 +12,6 @@ const FabricCanvas = () => {
     const [width, setWidth] = useState(initialWidth);
     const [height, setHeight] = useState(initialHeight);
     const [flare, setFlare] = useState(0);
-    const [patternImage, setPatternImage] = useState(null);
     const skirtRef = useRef(null);
 
     useEffect(() => {
@@ -70,7 +69,7 @@ const FabricCanvas = () => {
             skirtRef.current.set({ left: offsetX, top: offsetY });
             canvas.renderAll();
         }
-    }, [skirtRef.current]);
+    }, []);
 
     const handleImageUpload = (e) => {
         const file = e.target.files[0];

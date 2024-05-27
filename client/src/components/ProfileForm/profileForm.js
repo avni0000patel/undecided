@@ -153,6 +153,25 @@ const ProfileForm = ({ collapsed }) => {
     const [phoneNumber, setPhoneNumber] = useState("");
     const [pinterest, setPinterest] = useState("");
 
+    useEffect(() => {
+        console.log("bio:", bio);
+        console.log("email:", email)
+    }, [bio, email])
+
+    useEffect(() => {
+        if (dataProfiles.data && dataProfiles.data.profiles.length > 0) {
+            const latestProfile = dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1];
+            setBio(latestProfile.bio);
+            setEmail(latestProfile.email);
+            setFacebook(latestProfile.facebook);
+            setImage(latestProfile.image);
+            setInstagram(latestProfile.instagram);
+            setLocation(latestProfile.location);
+            setPhoneNumber(latestProfile.phoneNumber);
+            setPinterest(latestProfile.pinterest);
+        }
+    }, [dataProfiles]);
+
     const [addProfile] = useMutation(ADD_PROFILE, {
         update(cache, { data: { addProfile } }) {
             try {
@@ -200,18 +219,15 @@ const ProfileForm = ({ collapsed }) => {
     };
 
     const handleBioChange = (event) => {
-        const { value } = event.target;
-        setBio(value);
+        setBio(event.target);
     }
 
     const handleEmailChange = (event) => {
-        const { value } = event.target;
-        setEmail(value);
+        setEmail(event.target);
     }
 
     const handleFacebookChange = (event) => {
-        const { value } = event.target;
-        setFacebook(value);
+        setFacebook(event.target);
     }
 
     const handleImageChange = (event) => {
@@ -220,23 +236,19 @@ const ProfileForm = ({ collapsed }) => {
     };
 
     const handleInstagramChange = (event) => {
-        const { value } = event.target;
-        setInstagram(value);
+        setInstagram(event.target);
     }
 
     const handleLocationChange = (event) => {
-        const { value } = event.target;
-        setLocation(value);
+        setLocation(event.target);
     }
 
     const handlePhoneNumberChange = (event) => {
-        const { value } = event.target;
-        setPhoneNumber(value);
+        setPhoneNumber(event.target);
     }
 
     const handlePinterestChange = (event) => {
-        const { value } = event.target;
-        setPinterest(value);
+        setPinterest(event.target);
     }
 
     return (
@@ -255,7 +267,7 @@ const ProfileForm = ({ collapsed }) => {
                                     <label className="label" htmlFor="imageUpload" style={styles.label}></label>
                                 </div>
                                 <div className="avatarPreview" style={styles.avatarPreview}>
-                                    <img alt="" className="imagePreview" src={dataProfiles.data && dataProfiles.data.profiles.length > 0 && dataProfiles.data.profiles.image != null ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].image : image} style={styles.imagePreview} />
+                                    <img alt="" className="imagePreview" src={image} style={styles.imagePreview} />
                                 </div>
                             </div>
                             {data && data.data && data.data.me && (
@@ -265,7 +277,7 @@ const ProfileForm = ({ collapsed }) => {
                         <div className="col-sm-12 col-lg-6">
                             <div className="bioInfo" style={styles.bioInfo}>
                                 <div className="bioLabel" style={styles.bioLabel}>Bio:</div>
-                                <textarea className="bioInput" name="bio" onChange={handleBioChange} style={styles.bioInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].bio : bio} />
+                                <textarea className="bioInput" name="bio" onChange={handleBioChange} style={styles.bioInput} type="text" value={bio} />
                             </div>
                         </div>
                     </div>
@@ -273,29 +285,29 @@ const ProfileForm = ({ collapsed }) => {
                         <div className="col-sm-12 col-lg-6">
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Location:</div>
-                                <input className="socialInput" name="location" onChange={handleLocationChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].location : location} />
+                                <input className="socialInput" name="location" onChange={handleLocationChange} style={styles.socialInput} type="text" value={location} />
                             </div>
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Email:</div>
-                                <input className="socialInput" name="email" onChange={handleEmailChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].email : email} />
+                                <input className="socialInput" name="email" onChange={handleEmailChange} style={styles.socialInput} type="text" value={email} />
                             </div>
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Phone Number:</div>
-                                <input className="socialInput" name="phoneNumber" onChange={handlePhoneNumberChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].phoneNumber : phoneNumber} />
+                                <input className="socialInput" name="phoneNumber" onChange={handlePhoneNumberChange} style={styles.socialInput} type="text" value={phoneNumber} />
                             </div>
                         </div>
                         <div className="col-sm-12 col-lg-6">
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Facebook:</div>
-                                <input className="socialInput" name="facebook" onChange={handleFacebookChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].facebook : facebook} />
+                                <input className="socialInput" name="facebook" onChange={handleFacebookChange} style={styles.socialInput} type="text" value={facebook} />
                             </div>
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Instagram:</div>
-                                <input className="socialInput" name="instagram" onChange={handleInstagramChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].instagram : instagram} />
+                                <input className="socialInput" name="instagram" onChange={handleInstagramChange} style={styles.socialInput} type="text" value={instagram} />
                             </div>
                             <div className="socialInfo" style={styles.socialInfo}>
                                 <div className="socialLabel" style={styles.socialLabel}>Pinterest:</div>
-                                <input className="socialInput" name="pinterest" onChange={handlePinterestChange} style={styles.socialInput} type="text" value={dataProfiles.data && dataProfiles.data.profiles.length > 0 ? dataProfiles.data.profiles[dataProfiles.data.profiles.length - 1].pinterest : pinterest} />
+                                <input className="socialInput" name="pinterest" onChange={handlePinterestChange} style={styles.socialInput} type="text" value={pinterest} />
                             </div>
                         </div>
                     </div>
